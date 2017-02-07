@@ -1,0 +1,277 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 21, 2016, 11:25:04 AM
+    Author     : ThanhVan
+    Description: This file handles these styles for entired project
+*/
+/********************************************Elements********************************************/
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #FFF;
+    padding:0px;
+    margin:0px;
+}
+header{
+    background-color: #FFF;
+}
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+ul.topnav li a:hover {background-color: #555;}
+
+ul.topnav li.icon {display: none;}
+/********************************************Custom Class********************************************/
+/* Animations */
+.slide-animation-container {
+    position: relative;
+}
+
+.slide-animation.ng-enter, .slide-animation.ng-leave {
+    -moz-transition: 0.5s linear all;
+    -o-transition: 0.5s linear all;
+    -webkit-transition: 0.5s linear all;
+    transition: 0.5s linear all;
+    position: relative;
+    /*top: 0;
+    left: 0;
+    right: 0;*/
+    height: 1000px;
+}
+
+.slide-animation.ng-enter {
+    z-index: 100;
+    left: 100px;
+    opacity: 0;
+}
+
+.slide-animation.ng-enter.ng-enter-active {
+    left: 0;
+    opacity: 1;
+}
+
+.slide-animation.ng-leave {
+    z-index: 101;
+    opacity: 1;
+    left: 0;
+}
+
+.slide-animation.ng-leave.ng-leave-active {
+    left: -100px;
+    opacity: 0;
+}
+.topBanner{
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background-color: #F5F8FA;
+    border-bottom: 1px solid #e1e8ed;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    min-height: 45px;
+}
+.appContent{
+    margin-top: 50px;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: hidden;
+}
+.nav {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+.nav > li {
+    position: relative;
+    display: block;
+}
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 15px 15px;
+    text-decoration: none;
+}
+.nav > li > span {
+    position: relative;
+    display: block;
+    padding: 15px 15px;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+    text-decoration: none;
+    background-color: #eeeeee;
+}
+.nav > li.disabled > a {
+    color: #777777;
+}
+.nav > li.disabled > a:hover,
+.nav > li.disabled > a:focus {
+    color: #777777;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: not-allowed;
+}
+.nav ul{
+    list-style: none;
+}
+.navBar{
+    display: block;
+    height: auto!important;
+    padding-bottom: 0;
+    overflow: visible!important;
+    margin-top: 0;
+}
+.navBar > li{
+    float: left;
+}
+.nav-left{
+    float: left;
+}
+.nav-right{
+    float: right;
+}
+.nav-right.collapse.in{
+    display: block;
+}
+
+.navBars{
+    display: none;
+}
+
+footer p{
+    clear:both;
+    background-color: #000;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20%;
+    vertical-align: middle;
+    margin-bottom: 0px;
+}
+div.banner{
+    background: #59CAFD url(../images/twitter-banner.jpg) no-repeat center;
+    height: 200px;
+    background-size: 100% 100%;
+    font-size: 20px; 
+    position:relative;
+    padding:0px;
+    margin:0px;
+}
+div.bannerBackground{
+    background-color: #59CAFD;
+}
+div.banner div{
+    width: auto;
+    height: 5%;
+    position: absolute;
+    top:47%;
+    left:42%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+div.banner div span{
+    display:inline;
+    border: 1px solid black;
+    padding: 5px;
+    
+}
+
+#map{
+    height: 400px!important;
+}
+/******************************************** Media ********************************************/
+/*Specific handler for media based on screen width*/
+@media (min-width: 768px){
+    .container > navBar{
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+/*Container Media*/
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+@media screen and (max-width:680px) {
+    ul.topnav li:not(:first-child) {display: none;}
+    ul.topnav li.icon {
+        float: right;
+        display: inline-block;
+    }
+}
+@media screen and (max-width: 412px){
+    .nav-right{
+        display: none;
+        float: none;
+    }
+    .navBars{
+        display: block;
+        float: right;
+    }
+    .nav-right li{
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width:680px) {
+    ul.topnav.responsive {position: relative;}
+    ul.topnav.responsive li.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    ul.topnav.responsive li {
+        float: none;
+        display: inline;
+    }
+    ul.topnav.responsive li a {
+        display: block;
+        text-align: left;
+    }
+}

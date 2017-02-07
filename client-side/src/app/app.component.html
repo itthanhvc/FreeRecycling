@@ -1,14 +1,41 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-10">
-            <h1>{{title}}</h1>
-            <hr>
-            <a [routerLink]="['']">Homepage</a> |
-            <a [routerLink]="['state']">State</a> |
-            <a [routerLink]="['nearby']">Near By</a> | 
-            <a [routerLink]="['donate']">Search & Manage Donate</a>
-            <hr>
-            <router-outlet></router-outlet>
-        </div>
+<header class="topBanner">
+  <!--class="topBanner"-->
+  <div class="container">
+    <nav>
+      <ul class="nav navBar nav-left">
+        <li>
+          <span><i class="fa fa-recycle"></i> <strong> Free Recycling</strong> - CS572 Modern Web Application </span>
+        </li>
+      </ul>
+      <ul class="nav navBars">
+        <li>
+          <button type="button" ng-click="collapse()"><i class="fa fa-bars"></i></button>
+        </li>
+
+      </ul>
+      <ul class="nav navBar nav-left" ng-class="activeClass" data-menu-highlighter data-highlight-class-name="active">
+        <li>
+          <a [routerLink]="['']" routerLinkActive="active">State</a> </li>
+        <li>
+          <a [routerLink]="['nearby']" routerLinkActive="active">Near By</a> </li>
+        <li>
+          <a [routerLink]="['mydonate']" routerLinkActive="active">My Donation</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div>
+  <div class="appContent">
+    <div class="container">
+      <div class="slide-animation">
+        <router-outlet></router-outlet>
+      </div>
     </div>
+  </div>
 </div>
+
+<footer>
+  <p>Copyright © Thanh, Utku and Sunil MUM students. All rights reserved.
+  </p>
+</footer>

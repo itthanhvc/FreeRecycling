@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 21, 2016, 11:25:04 AM
+    Author     : ThanhVan
+    Description: This file handles these styles for Utilites purpose
+*/
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 5px;
+}
+.nav.navBar.nav-right > .active > a{
+    background-color: #efefef;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #808080;
+}
+.padding-top10{
+    padding-top: 10px;
+}
+/* wcOverlay directive CSS styles */
+.overlayContainer { display: none;}
+.overlayBackground {
+    top:0px; left:0px; 
+    padding-left:100px;
+    position:absolute; 
+    z-index:1000;
+    height:100%;
+    width:100%;
+    background-color:#808080;
+    opacity:0.4;}
+.overlayContent { position:absolute; border: 1px solid #000; background-color:#fff; font-weight: bold;height: 60px;width: 300px;z-index:1000;text-align:center;}

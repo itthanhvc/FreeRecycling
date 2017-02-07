@@ -5,9 +5,9 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { myRoutes} from './app.routes';
+import { myRoutes } from './app.routes';
 import { StateComponent } from './state/state.component';
-import { DonateComponent } from './donate/donate.component';
+import { MyDonationComponent } from './my-donation/my-donation.component';
 import { NearByComponent } from './near-by/near-by.component';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { NearByComponent } from './near-by/near-by.component';
     LoginComponent,
     LoginComponent,
     StateComponent,
-    DonateComponent,
+    MyDonationComponent,
     NearByComponent
   ],
   imports: [

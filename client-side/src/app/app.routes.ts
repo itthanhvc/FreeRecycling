@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 
 import { StateComponent } from "./state/state.component";
-import { DonateComponent } from "./donate/donate.component";
+import { MyDonationComponent } from "./my-donation/my-donation.component";
 import { LoginComponent } from "./login/login.component";
 import { NearByComponent } from "./near-by/near-by.component";
 
@@ -10,7 +10,7 @@ import { NearByComponent } from "./near-by/near-by.component";
 const MY_ROUTES: Routes = [
     { path: '', component: StateComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'donate', component: DonateComponent },
+    { path: 'mydonate', component: MyDonationComponent },
     { path: 'nearby', component: NearByComponent },
     { path: '**', redirectTo: '/login' }
 ];
