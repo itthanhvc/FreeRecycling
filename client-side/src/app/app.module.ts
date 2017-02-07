@@ -4,15 +4,26 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { myRoutes} from './app.routes';
+import { StateComponent } from './state/state.component';
+import { DonateComponent } from './donate/donate.component';
+import { NearByComponent } from './near-by/near-by.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    LoginComponent,
+    StateComponent,
+    DonateComponent,
+    NearByComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    myRoutes
   ],
   providers: [],
   bootstrap: [AppComponent]
