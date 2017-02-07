@@ -1,3 +1,23 @@
-<p>
-  state works!
-</p>
+<div>
+  <ul class="breadcrumb">
+    <li class="breadcrumb-item" *ngIf="braidCumb.state!=='h'"><a (click)="onHomeBraidCumb()">Home</a></li>
+    <li class="breadcrumb-item" *ngIf="braidCumb.state!==''"><a (click)="onStateBraidCumb()">{{braidCumb.state}}</a></li>
+    <li class="breadcrumb-item" *ngIf="braidCumb.city!==''"><a (click)="onCityBraidCumb()">{{braidCumb.city}}</a></li>
+    <li class="breadcrumb-item active" *ngIf="braidCumb.item!==''"><a (click)="onItemBraidCumb()">{{braidCumb.item}}</a></li>
+  </ul>
+</div>
+<div *ngIf="isstate">
+  <ul id="state">
+    <li *ngFor="let state of states"><a (click)="onStateClick(state)">{{state}}</a></li>
+  </ul>
+</div>
+<div *ngIf="iscity">
+  <ul id="city">
+    <li *ngFor="let city of cities"><a (click)="onCityClick(city)">{{city}}</a></li>
+  </ul>
+</div>
+<div *ngIf="isitem">
+  <ul id="item">
+    <li *ngFor="let item of items"><a (click)="onItemClick(item)">{{item}}</a></li>
+  </ul>
+</div>

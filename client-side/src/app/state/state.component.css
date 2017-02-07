@@ -1,0 +1,18 @@
+#state li{
+    display: inline-block;    
+    margin:15px 15px;
+    height: 10px;
+    width: 150px;
+}
+#city li{
+    display: inline-block;    
+    margin:15px 15px;
+    height: 10px;
+    width: 150px;
+}
+#item li{
+    display: inline-block;    
+    margin:15px 15px;
+    height: 10px;
+    width: 150px;
+}
