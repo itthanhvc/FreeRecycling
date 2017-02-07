@@ -9,6 +9,7 @@ import { myRoutes } from './app.routes';
 import { StateComponent } from './state/state.component';
 import { MyDonationComponent } from './donation/my-donation.component';
 import { NearByComponent } from './near-by/near-by.component';
+import { DonationDetailsComponent } from './donation-details/donation-details.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NearByComponent } from './near-by/near-by.component';
     LoginComponent,
     StateComponent,
     MyDonationComponent,
-    NearByComponent
+    NearByComponent,
+    DonationDetailsComponent
   ],
   imports: [
     BrowserModule,
