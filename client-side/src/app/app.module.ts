@@ -25,7 +25,7 @@ import { RegisterComponent } from './register/register.component';
     StateComponent,
     MyDonationComponent,
     NearByComponent,
-    DonationDetailsComponent
+    DonationDetailsComponent,
     CollapseDirective,
     RegisterComponent
   ],
