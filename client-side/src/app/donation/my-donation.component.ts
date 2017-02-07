@@ -42,7 +42,7 @@ export class MyDonationComponent implements OnInit {
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
     };
-    console.log(JSON.parse(localStorage['currentUser']));
+    //console.log(JSON.parse(localStorage['currentUser'].data.firstName));
     
    }
 
