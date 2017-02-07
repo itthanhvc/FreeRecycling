@@ -14,8 +14,8 @@ import { NearByComponent } from './near-by/near-by.component';
 import { DonationDetailsComponent } from './donation-details/donation-details.component';
 import { CollapseDirective } from 'ng2-bootstrap';
 import { AuthenticationService } from './service/authentication.service';
+import { DataService } from './service/data.service';
 import { RegisterComponent } from './register/register.component';
-
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { RegisterComponent } from './register/register.component';
     HttpModule,
     myRoutes
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

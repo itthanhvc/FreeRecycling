@@ -1,3 +1,3 @@
-export class AppConstant {
-  
+export const AppConstant = {
+  SERVER_URL: "http://localhost:3000"
 }
