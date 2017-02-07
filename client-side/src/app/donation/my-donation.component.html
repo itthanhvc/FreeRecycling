@@ -6,6 +6,69 @@
   </a>
 </div>
 
-<div>
+<div class = "newDonationDiv">
+  <h3 class="text-primary" >WANT TO MAKE A DONATION? GO AHEAD!</h3>
+  <form [formGroup]= "donationForm" (ngSubmit) = "addDonation()">
 
+    <div class = "form-group">
+      <label for= "itemName">Item Name:</label>
+      <input class="form-control" type = "text" id = "itemName" [formControl] = "donationForm.controls['itemName']"/>
+      <p *ngIf = "!donationForm.controls['itemName'].valid">Item name is required</p><br>
+    </div>
+
+    <div class = "form-group">
+      <label>Short Description:</label>
+      <textarea placeholder="Short Description" class="form-control" name= "shortDescription" [formControl]= "donationForm.controls['shortDescription']"></textarea>
+    </div>
+
+    <div class = "form-group">
+      <label>Item Details:</label>
+      <textarea placeholder="Item Details"  class="form-control" name= "itemDetails" [formControl]= "donationForm.controls['itemDetails']"></textarea>
+    </div>
+
+    <div class = "form-group">
+    <label>Email:</label>
+    <input placeholder="Email" class="form-control" type = "text" name = "email" [formControl] = "donationForm.controls['email']"/>
+    <p *ngIf = "!donationForm.controls['email'].valid">Email is required</p><br>
+    </div>
+
+    <div class = "form-group">
+    <label>Phone(Optional):</label>
+    <input placeholder="Phone" class="form-control" type = "text" name = "phone" [formControl] = "donationForm.controls['phone']"/><br>
+    </div>
+
+    <div class = "form-group">
+    <label>Category:</label>
+      <select  class="form-control" [formControl] = "donationForm.controls['category']">
+        <option value = "default"></option>
+        <option value = "vehicle">Vehicle</option>
+        <option value = "furniture">Furniture</option>
+        <option value = "clothes">Clothes</option>
+        <option value = "other">Other</option>
+      </select>
+    </div>
+
+    <div class = "form-group">
+    <label>State:</label>
+    <input placeholder="State" class="form-control" type = "text" name = "state" [formControl] = "donationForm.controls['state']"/>
+    <p *ngIf = "!donationForm.controls['state'].valid">State is required</p><br>
+    </div>
+
+    <div class = "form-group">
+    <label>City:</label>
+    <input  placeholder="City" class="form-control" type = "text" name = "city" [formControl] = "donationForm.controls['city']"/>
+    <p *ngIf = "!donationForm.controls['city'].valid">City is required</p><br>
+    </div>
+
+    <input #long type = "hidden" name = "long" [formControl] = "donationForm.controls['long']" [value]="myLocation.long">
+    <input #lat type = "hidden" name = "lat" [formControl] = "donationForm.controls['lat']" [value]="myLocation.lat">
+
+    <div class = "form-group">
+    <label>Upload Image File:</label>
+    <input class="form-control" name="image" accept="image/*" type="file" [formControl] = "donationForm.controls['image']"><br>
+    </div>
+
+
+    <button type="submit" class="btn btn-default" [disabled]="!donationForm.valid">DONATE!</button>
+  </form>
 </div>
