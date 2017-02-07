@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 
 import { StateComponent } from "./state/state.component";
-import { MyDonationComponent } from "./my-donation/my-donation.component";
+import { MyDonationComponent } from "./donation/my-donation.component";
 import { LoginComponent } from "./login/login.component";
 import { NearByComponent } from "./near-by/near-by.component";
 
