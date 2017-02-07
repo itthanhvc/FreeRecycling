@@ -56,17 +56,4 @@ export class MyDonationComponent implements OnInit {
     console.log("Add donation");
   }
 
-  uploadImage() {
-    var preview = document.getElementById('imagePreview');
-    var file = document.querySelector('input[type=file]')[0].files[0];
-    var reader = new FileReader();
-
-    reader.addEventListener("load", function () {
-      preview.setAttribute("src", reader.result);
-    }, false);
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  }
 }
