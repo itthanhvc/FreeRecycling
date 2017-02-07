@@ -11,6 +11,8 @@ import { StateComponent } from './state/state.component';
 import { MyDonationComponent } from './donation/my-donation.component';
 import { NearByComponent } from './near-by/near-by.component';
 import { CollapseDirective } from 'ng2-bootstrap';
+import { AuthenticationService } from './service/authentication.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { CollapseDirective } from 'ng2-bootstrap';
     StateComponent,
     MyDonationComponent,
     NearByComponent,
-    CollapseDirective
+    CollapseDirective,
+    RegisterComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -29,7 +32,7 @@ import { CollapseDirective } from 'ng2-bootstrap';
     HttpModule,
     myRoutes
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
