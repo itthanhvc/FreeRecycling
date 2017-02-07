@@ -41,15 +41,15 @@ export class MyDonationComponent implements OnInit {
   ngOnInit() {
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
-      };
+    };
+    console.log(JSON.parse(localStorage['currentUser']));
+    
    }
 
    setPosition(position){
     this.myLocation.set = true;
-    console.log(position.coords.latitude + ' ' + position.coords.longitude);
     this.myLocation.lat = position.coords.latitude;
-    this.myLocation.long = position.coords.longitude;
-    console.log(this.myLocation.lat + ' ' + this.myLocation.long);
+    this.myLocation.long = position.coords.longitude; 
   }
 
   addDonation() {
