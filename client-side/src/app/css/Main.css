@@ -149,37 +149,22 @@ ul.topnav li.icon {display: none;}
 .nav ul{
     list-style: none;
 }
-.navBar{
+.navbar-default{
+      background-color: transparent;    
     display: block;
     height: auto!important;
     padding-bottom: 0;
     overflow: visible!important;
     margin-top: 0;
 }
-.navBar > li{
-    float: left;
-}
-.nav-left{
-    float: left;
-}
-.nav-right{
-    float: right;
-}
-.nav-right.collapse.in{
-    display: block;
-}
 
-.navBars{
-    display: none;
-}
 
-footer p{
+footer {
     clear:both;
     background-color: #000;
     color: #fff;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 20%;
     vertical-align: middle;
     margin-bottom: 0px;
 }
