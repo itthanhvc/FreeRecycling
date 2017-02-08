@@ -1,6 +1,6 @@
 var UserEntity = require('../entities/User');
 var LocationEntity=require('../entities/Location');
-var DonationEntity = require('../entities/donation');
+var DonationEntity = require('../entities/Donation');
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
 function DataService() {
@@ -150,7 +150,7 @@ DataService.prototype.getNerabyDonations = function(long, lat) {
 }
 
 DataService.prototype.postNewDonation = function(form) {
-    var DonationEntity = new DonationEntity({
+    var donation = new DonationEntity({
         itemName : form.itemName,
         shortDescription : form.shortDescription,
         itemDetails : form.itemDetails,
@@ -163,9 +163,9 @@ DataService.prototype.postNewDonation = function(form) {
         lat : form.lat,
         imageUrl : "default"
     });
-    console.log(DonationEntity);
+    console.log(donation);
     return new Promise ((res,rej) => {//change with save
-        DonationEntity.find({}, function(err, don) {
+        donation.find({}, function(err, don) {
             if (err) {
                 rej({
                     type: false,

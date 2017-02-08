@@ -24,7 +24,7 @@ export class DataService {
     }
 
     postNewDonation(form){
-        return this.http.post(AppConstant.SERVER_URL + '/api/donations/newdonation', {form:form},this.jwt()).map((response: Response) => response.json());
+        return this.http.post(AppConstant.SERVER_URL + '/api/donations/newdonation', {form:form}, this.jwt()).map((response: Response) => response.json());
     }
 
     private jwt() {
