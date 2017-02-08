@@ -18,4 +18,10 @@ export class DataService {
             return new RequestOptions({ headers: headers });
         }
     }
+    getStates(){
+        return this.http.get(AppConstant.SERVER_URL + '/api/location');
+    }
+    getCitiesByState(state:string){
+        return this.http.get(AppConstant.SERVER_URL + '/api/location/'+state);
+    }
 }

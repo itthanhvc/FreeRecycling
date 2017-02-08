@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-state',
@@ -14,53 +15,62 @@ export class StateComponent implements OnInit {
   iscity: boolean;
   isitem: boolean;
   braidCumb: Object;
-  constructor(private route: ActivatedRoute) {
-    this.states = ["Iowa", "Illinois", "California", "Iowa", "Illinois", "California", "Iowa", "Illinois", "California"];
-    this.cities = ["Fairfield", "Ottumwa", "Burlington"];
+  constructor(private route: ActivatedRoute, private dataservice: DataService) {
+    // this.states = ["Iowa", "Illinois", "California", "Iowa", "Illinois", "California", "Iowa", "Illinois", "California"];
+    dataservice.getStates().subscribe(res => {
+      // console.log(res.json());
+      this.states = res.json();
+    });
+    // console.log(jsonStates);
+
+   // this.cities = ["Fairfield", "Ottumwa", "Burlington"];
     this.items = ["Bike1", "Bike2", "Bike3"];
     this.braidCumb = { 'state': '', 'city': '', 'item': '' };
     this.isstate = true;
     this.iscity = false;
     this.isitem = false;
   }
-  onStateClick(value: string) {
+  onStateClick(value: string) {    
+    this.braidCumb['state'] = value;
+    this.dataservice.getCitiesByState(this.braidCumb['state']).subscribe(res => {
+      this.cities = res.json();
+    });
     this.isstate = false;
     this.iscity = true;
     this.isitem = false;
-    this.braidCumb['state'] = value;
   }
-  onCityClick(value: string) {
+  onCityClick(value: string) {    
+    this.braidCumb['city'] = value;
     this.isstate = false;
     this.iscity = false;
     this.isitem = true;
-    this.braidCumb['city'] = value;
   }
   onItemClick(value: string) {
-    this.isstate = false;
-    this.iscity = false;
-    this.isitem = true;
     this.braidCumb['item'] = value;
+    // this.isstate = false;
+    // this.iscity = false;
+    // this.isitem = true;    
   }
   onStateBraidCumb() {
-    this.isstate = false;
-    this.iscity = true;
-    this.isitem = false;
     this.braidCumb['item'] = '';
     this.braidCumb['city'] = '';
     this.braidCumb['state'] = '';
+    this.isstate = false;
+    this.iscity = true;
+    this.isitem = false;    
   }
   onCityBraidCumb() {
+    this.braidCumb['item'] = '';
     this.isstate = false;
     this.iscity = false;
-    this.isitem = true;
-    this.braidCumb['item'] = '';
+    this.isitem = true;    
   }
   onItemBraidCumb() {
     // this.isstate = false;
     // this.iscity = false;
     // this.isitem = false;
   }
-  onHomeBraidCumb(){
+  onHomeBraidCumb() {
     this.isstate = true;
     this.iscity = false;
     this.isitem = false;
