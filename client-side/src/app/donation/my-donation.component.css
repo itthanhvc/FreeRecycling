@@ -14,6 +14,7 @@
   padding: 0;
   background-color: #284c79;
   color: rgb(136, 172, 217);
+   max-width: 200px;
 }
 
 .card .header-bg {
