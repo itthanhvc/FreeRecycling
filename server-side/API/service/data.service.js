@@ -1,8 +1,10 @@
 var UserEntity = require('../entities/User');
 var LocationEntity=require('../entities/Location');
 var DonationEntity = require('../entities/Donation');
+var Guid = require('guid');
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
+
 function DataService() {
 
 }
@@ -165,7 +167,10 @@ DataService.prototype.postNewDonation = function(form) {
         lat : form.lat,
         imageUrl : "default"
     });
-    console.log(donation);
+    var imageId = Guid.create();
+    console.log(form.image.name);
+    
+
     return new Promise ((res,rej) => {//change with save
         donation.find({}, function(err, don) {
             if (err) {
