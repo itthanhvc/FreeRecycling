@@ -57,8 +57,8 @@
               <p *ngIf="!donationForm.controls['city'].valid">City is required</p><br>
             </div>
           </div>
-          <input #long type="hidden" name="long" [formControl]="donationForm.controls['long']" [value]="myLocation.long">
-          <input #lat type="hidden" name="lat" [formControl]="donationForm.controls['lat']" [value]="myLocation.lat">
+          <input  type="hidden" name="long" formControlName="long" #long]>
+          <input  type="hidden" name="lat" [formControl]="donationForm.controls['lat']" #lat>
 
           <div class="form-group">
             <label>Upload Image File:</label>

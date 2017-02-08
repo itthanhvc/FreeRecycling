@@ -187,11 +187,16 @@ DataService.prototype.postNewDonation = function (form) {
         if (err) throw err;
         console.log('Done');
     })*/
-
+    console.log('UTKU'+form.long);
     return new Promise((res, rej) => {
-        donation.save()
-            .then(response => res(response))
-            .catch(err => rej(err))
+        donation.save(function (err, don) {
+            don.save(function (err, don1) {
+                res({
+                    type: true,
+                    data: don1,
+                });
+            });
+        })
     });
 }
 module.exports = new DataService();

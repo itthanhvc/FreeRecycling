@@ -20,6 +20,7 @@ export class MyDonationComponent implements OnInit {
   { _id: 2, imageUrl: "http://localhost:3000/images/profilephoto.jpg", itemName: "Bicycle2", email: "sunil@gmail.com" },
   { _id: 3, imageUrl: "http://localhost:3000/images/profilephoto.jpg", itemName: "Bicycle3", email: "thanh@gmail.com" }];
   */
+  private formData: any;
   myDonations: any[];
   constructor(fb: FormBuilder, private authenticationService: AuthenticationService, private ds: DataService) {
     this.donationForm = fb.group({
@@ -34,6 +35,10 @@ export class MyDonationComponent implements OnInit {
       "long": [""],
       "lat": [""],
       "image": [""]
+    });
+
+    this.donationForm.valueChanges.subscribe((data: any) => {
+      this.formData = data
     });
   }
 
@@ -53,11 +58,12 @@ export class MyDonationComponent implements OnInit {
     this.myLocation.set = true;
     this.myLocation.lat = position.coords.latitude;
     this.myLocation.long = position.coords.longitude;
+    this.donationForm.controls['lat'].setValue(position.coords.latitude)
+    this.donationForm.controls['long'].setValue(position.coords.longitude);
   }
 
   addDonation() {
-    console.log(this.donationForm.value);
-    this.ds.postNewDonation(this.donationForm.value).subscribe(data => {
+    this.ds.postNewDonation(this.formData).subscribe(data => {
       console.log("Added!" + this.donationForm.value);
     },
       error => {
