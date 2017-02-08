@@ -1,6 +1,5 @@
 var UserEntity = require('../entities/User');
 var LocationEntity=require('../entities/Location');
-var DonationEntity=require('../entities/Donation');
 var User = require('../entities/User');
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
@@ -115,39 +114,4 @@ DataService.prototype.getCitiesByState = function (state) {
         });
  });
 }
-<<<<<<< HEAD
-DataService.prototype.getMyDonations = function(email) {
-    return new Promise((res, rej) => {
-
-    })
-}
-
-DataService.prototype.getNerabyDonations = function(long, lat) {
-    return new Promise ((res,rej) => {
-
-    })
-}
-
-DataService.prototype.postNewDonation() = function(form) {
-    return new Promise ((res,rej) => {
-
-    })
-}
-
-=======
-DataService.prototype.getDonationsByCityAndState = function (city,state) {
-    return new Promise((res, rej) => {
-        DonationEntity.find({$and:[{'city':city,$options:"i"},{'state':state,$options:"i"}]}, function (err, locs) {
-            if (err) {
-                rej({
-                    type: false,
-                    data: "Error occured: " + err
-                });
-            } else {
-                res(locs);
-            }
-        });
- });
-}
->>>>>>> 0759cce20573baaedb402c2965d56a9cafbf8681
 module.exports = new DataService();
