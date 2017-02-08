@@ -114,4 +114,18 @@ DataService.prototype.getCitiesByState = function (state) {
         });
  });
 }
+DataService.prototype.getDonationsByCityAndState = function (city,state) {
+    return new Promise((res, rej) => {
+        DonationEntity.find({$and:[{'city':city,$options:"i"},{'state':state,$options:"i"}]}, function (err, locs) {
+            if (err) {
+                rej({
+                    type: false,
+                    data: "Error occured: " + err
+                });
+            } else {
+                res(locs);
+            }
+        });
+ });
+}
 module.exports = new DataService();
