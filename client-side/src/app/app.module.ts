@@ -18,7 +18,7 @@ import { AuthenticationService } from './service/authentication.service';
 import { DataService } from './service/data.service';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guard/auth.guard';
-
+import { filterArray } from './filter-array.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,8 @@ import { AuthGuard } from './guard/auth.guard';
     NearByComponent,
     DonationDetailsComponent,
     CollapseDirective,
-    RegisterComponent, 
+    RegisterComponent,
+    filterArray,
     DonationComponent
   ],
   imports: [

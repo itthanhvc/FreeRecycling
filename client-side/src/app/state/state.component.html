@@ -17,12 +17,19 @@
 </div>
 <div class="row">
   <div class="col-md-12">
+    <input *ngIf="iscity || isstate" type="text" placeholder="Enter your search terms" class="form-control searchBox" [(ngModel)]="filter" />
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <ul *ngIf="isstate" id="state">
-      <li *ngFor="let state of states">
+      <li *ngFor="let state of (states| filterArray : filter)">
         <button class="btn btn-link" (click)="onStateClick(state)">{{state}}</button></li>
     </ul>
+
+
     <ul *ngIf="iscity" id="city">
-      <li *ngFor="let city of cities">
+      <li *ngFor="let city of (cities | filterArray : filter)">
         <button class="btn btn-link" (click)="onCityClick(city)">{{city}}</button></li>
     </ul>
   </div>

@@ -19,6 +19,11 @@
 .margin-left20{
     margin-left: 20px;
 }
+.searchBox{
+    margin-top: 5px;
+    margin-left: 20px;
+    max-width:200px; 
+}
 /* Breadcrumbs from http://bootsnipp.com/snippets/featured/triangle-breadcrumbs-arrows */
 .btn-breadcrumb .btn:not(:last-child):after {
   content: " ";
