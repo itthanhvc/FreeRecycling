@@ -1,23 +1,44 @@
-<div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="btn-group btn-breadcrumb">
+      <a (click)="onHomeBraidCumb()" class="btn btn-default"><i class="fa fa-home"></i></a>
+
+      <a *ngIf="braidCumb.state!==''" (click)="onStateBraidCumb()" class="btn btn-default">
+        <div>{{braidCumb.state}}</div>
+      </a>
+      <a *ngIf="braidCumb.city!==''" (click)="onCityBraidCumb()" class="btn btn-default">
+        <div>{{braidCumb.city}}</div>
+      </a>
+      <a *ngIf="braidCumb.item!==''" (click)="onItemBraidCumb()" class="btn btn-default">
+        <div>{{braidCumb.item}}</div>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <!--<div>
   <ul class="breadcrumb">
-    <li class="breadcrumb-item" *ngIf="braidCumb.state!=='h'"><a (click)="onHomeBraidCumb()">Home</a></li>
-    <li class="breadcrumb-item" *ngIf="braidCumb.state!==''"><a (click)="onStateBraidCumb()">{{braidCumb.state}}</a></li>
-    <li class="breadcrumb-item" *ngIf="braidCumb.city!==''"><a (click)="onCityBraidCumb()">{{braidCumb.city}}</a></li>
-    <li class="breadcrumb-item active" *ngIf="braidCumb.item!==''"><a (click)="onItemBraidCumb()">{{braidCumb.item}}</a></li>
+    <li *ngIf="braidCumb.state!=='h'"><a (click)="onHomeBraidCumb()">Home</a></li>
+    <li *ngIf="braidCumb.state!==''"><a (click)="onStateBraidCumb()">{{braidCumb.state}}</a></li>
+    <li *ngIf="braidCumb.city!==''"><a (click)="onCityBraidCumb()">{{braidCumb.city}}</a></li>
+    <li class="active" *ngIf="braidCumb.item!==''"><a (click)="onItemBraidCumb()">{{braidCumb.item}}</a></li>
   </ul>
-</div>
-<div *ngIf="isstate">
-  <ul id="state">
-    <li *ngFor="let state of states"><a (click)="onStateClick(state)">{{state}}</a></li>
-  </ul>
-</div>
-<div *ngIf="iscity">
-  <ul id="city">
-    <li *ngFor="let city of cities"><a (click)="onCityClick(city)">{{city}}</a></li>
-  </ul>
-</div>
-<div *ngIf="isitem">
-  <ul id="item">
-    <li *ngFor="let item of items"><a (click)="onItemClick(item)">{{item}}</a></li>
-  </ul>
-</div>
+</div>-->
+    <div *ngIf="isstate" class="">
+      <ul id="state">
+        <li *ngFor="let state of states"><a (click)="onStateClick(state)">{{state}}</a></li>
+      </ul>
+    </div>
+    <div *ngIf="iscity">
+      <ul id="city">
+        <li *ngFor="let city of cities"><a (click)="onCityClick(city)">{{city}}</a></li>
+      </ul>
+    </div>
+    <div *ngIf="isitem">
+      <ul id="item">
+        <li *ngFor="let item of items"><a (click)="onItemClick(item)">{{item}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>  
