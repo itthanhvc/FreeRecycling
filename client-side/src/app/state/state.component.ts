@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../service/data.service';
 import { DonationComponent } from '../donation/donation.component';
+import { filterArray } from '../filter-array.pipe';
 
 @Component({
   selector: 'app-state',
@@ -20,6 +21,7 @@ export class StateComponent implements OnInit {
     state: "",
     city: ""
   };
+  filter: string;
   constructor(private route: ActivatedRoute, private dataservice: DataService) {
     dataservice.getStates().subscribe(res => {
       this.states = res.json();
