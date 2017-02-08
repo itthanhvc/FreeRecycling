@@ -11,6 +11,7 @@ var mongoose = require("mongoose");
 var auth = require('./routes/auth');
 var user = require('./routes/user');
 var location=require('./routes/location');
+var donation = require('./routes/donation');
 var appSettings = require('./app.settings');
 
 var app = express();
@@ -25,6 +26,7 @@ app.options('*', cors());
 app.use('/api/authenticate', auth);
 app.use('/api/user', user);
 app.use('/api/location',location);
+app.use('/api/donation',donation);
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');

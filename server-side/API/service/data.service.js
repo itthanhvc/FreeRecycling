@@ -1,6 +1,6 @@
 var UserEntity = require('../entities/User');
 var LocationEntity=require('../entities/Location');
-var User = require('../entities/User');
+var DonationEntity = require('../entities/donation');
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
 function DataService() {
@@ -130,7 +130,16 @@ DataService.prototype.getDonationsByCityAndState = function (city,state) {
 }
 DataService.prototype.getMyDonations = function(email) {
     return new Promise((res, rej) => {
-        
+        DonationEntity.find({'email': email}, function (err, locs) {
+            if (err) {
+                rej({
+                    type: false,
+                    data: "Error occured: " + err
+                });
+            } else {
+                res(locs);
+            }
+        }); 
     })
 }
 
