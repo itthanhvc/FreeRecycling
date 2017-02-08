@@ -6,8 +6,7 @@ import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit {
   model: User;
@@ -39,6 +38,7 @@ export class RegisterComponent implements OnInit {
       },
       error => {
         this.loading = false;
+        this.error="Something wrongs!! Please contact admin."
       });
   }
 }

@@ -3,14 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
 @Component({
     selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
     returnUrl: string;
-
+    error: string;
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -25,15 +24,21 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+        this.error = "";
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
-            data => {
+            response => {
                 this.loading = false;
+                if (!response.type) {
+                    this.error = response.data;
+                    return;
+                }
                 this.router.navigate([this.returnUrl]);
             },
             error => {
                 console.log(error);
+                this.error = "Something wrongs!! Please contact admin."
                 this.loading = false;
             });
     }

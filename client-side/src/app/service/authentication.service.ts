@@ -16,9 +16,10 @@ export class AuthenticationService {
     }
 
     get UserLogin(): LoginInfo {
-        let user = JSON.parse(localStorage['currentUser']);
-        if (user == undefined)
+        if (localStorage['currentUser'] == undefined)
             return null;
+
+        let user = JSON.parse(localStorage['currentUser']);
         return new LoginInfo(user.data.firstName, user.data.lastName, user.data.email, user.data.token);
     }
 
@@ -32,13 +33,15 @@ export class AuthenticationService {
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.loggedInSucessful.emit(this.UserLogin);
                 }
+                return user;
             });
     }
 
     logout() {
-        this.loggedOutSuccessFull.emit();
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        this.loggedOutSuccessFull.emit();
+
     }
 
 

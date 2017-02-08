@@ -17,13 +17,13 @@
         <div id="navbar" class="navbar-collapse collapse" [collapse]="isCollapsed">
           <ul class="nav navbar-nav">
             <li>
-              <a [routerLink]="['']">State<span class="sr-only">(current)</span></a>
+              <a [class.disabled]="!isAuthentication" [routerLink]="['']">State<span class="sr-only">(current)</span></a>
             </li>
             <li>
-              <a [routerLink]="['nearby']">Near By<span class="sr-only">(current)</span></a>
+              <a [class.disabled]="!isAuthentication" [routerLink]="['nearby']">Near By<span class="sr-only">(current)</span></a>
             </li>
             <li>
-              <a [routerLink]="['mydonate']">My Donation<span class="sr-only">(current)</span></a>
+              <a [class.disabled]="!isAuthentication" [routerLink]="['mydonate']">My Donation<span class="sr-only">(current)</span></a>
             </li>
           </ul>
           <ul class="nav nav navbar-right">
@@ -47,11 +47,11 @@
               </ul>
 
               <ul class="dropdown-menu" role="menu">
-                <li role="menuitem"><a class="dropdown-item" [routerLink]="['']">State<span class="sr-only">(current)</span></a></li>
+                <li role="menuitem"><a [class.disabled]="!isAuthentication" class="dropdown-item" [routerLink]="['']">State<span class="sr-only">(current)</span></a></li>
                 <li role="menuitem">
-                  <a class="dropdown-item" [routerLink]="['nearby']">Near By<span class="sr-only">(current)</span></a>
+                  <a [class.disabled]="!isAuthentication" class="dropdown-item" [routerLink]="['nearby']">Near By<span class="sr-only">(current)</span></a>
                 </li>
-                <li role="menuitem"><a class="dropdown-item" [routerLink]="['mydonate']" routerLinkActive="active">My Donation<span class="sr-only">(current)</span></a></li>
+                <li role="menuitem"><a [class.disabled]="!isAuthentication" class="dropdown-item" [routerLink]="['mydonate']" routerLinkActive="active">My Donation<span class="sr-only">(current)</span></a></li>
               </ul>
             </li>
           </ul>

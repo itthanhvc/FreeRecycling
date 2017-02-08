@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from './service/authentication.service';
 import { LoginInfo } from './model/login.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent {
     return this._loginInfo;
   }
 
-  constructor(public authSer: AuthenticationService) {
+  constructor(public authSer: AuthenticationService, private router: Router, ) {
+    this.LoginInfo = authSer.UserLogin;
     authSer.loggedInSucessful.subscribe(user => {
       this.LoginInfo = user;
     })
@@ -33,5 +35,6 @@ export class AppComponent {
 
   logout() {
     this.authSer.logout();
+    this.router.navigate(['/login']);
   }
 }

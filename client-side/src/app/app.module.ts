@@ -16,6 +16,7 @@ import { CollapseDirective } from 'ng2-bootstrap';
 import { AuthenticationService } from './service/authentication.service';
 import { DataService } from './service/data.service';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { RegisterComponent } from './register/register.component';
     NearByComponent,
     DonationDetailsComponent,
     CollapseDirective,
-    RegisterComponent
+    RegisterComponent    
   ],
   imports: [
     NgbModule.forRoot(),
@@ -37,7 +38,7 @@ import { RegisterComponent } from './register/register.component';
     HttpModule,
     myRoutes
   ],
-  providers: [AuthenticationService, DataService],
+  providers: [AuthenticationService, DataService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
