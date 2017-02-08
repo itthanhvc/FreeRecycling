@@ -149,15 +149,13 @@ DataService.prototype.getNearByDonations = function (long, lat) {
                     data: "Error occured: " + err
                 });
             } else {
-                if (docs.results.length == 1) {
-                    distance = docs.results[0].dis;
-                    match = docs.results[0].obj;
-                    match.distance = distance;
-                    console.log(distance);
-                    console.log(match);
-                    console.log(docs.results);
-                }
-                res(docs.results);
+                let result = docs.results.map(data => {
+                    let doc = data.obj;
+                    doc.dis = data.dis;
+                    return doc;
+                });
+                 console.log(result);
+                res(result);
             }
         });
     });

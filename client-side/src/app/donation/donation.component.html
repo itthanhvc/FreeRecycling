@@ -7,7 +7,7 @@
         <img src="{{donation.imageUrl}}" alt="myImage">
       </div>
       <div class="content">
-        <p>{{donation.obj.itemName}} <br> {{donation.obj.email}}<br>{{donation.dis | number:0}} miles
+        <p>{{donation.itemName}} <br> {{donation.email}}<br><span *ngIf="Type===2">{{donation.dis | number:0}} miles</span>
         </p>
         <p><button type="button" class="btn btn-info" [routerLink]="['/detail', donation._id]">View</button></p>
       </div>
