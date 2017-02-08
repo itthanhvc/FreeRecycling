@@ -116,7 +116,9 @@ DataService.prototype.getCitiesByState = function (state) {
 }
 DataService.prototype.getDonationsByCityAndState = function (city,state) {
     return new Promise((res, rej) => {
-        DonationEntity.find({$and:[{'city':city,$options:"i"},{'state':state,$options:"i"}]}, function (err, locs) {
+        var regexcity = new RegExp(["^", city, "$"].join(""), "i");
+        var regexstate = new RegExp(["^", state, "$"].join(""), "i");
+        DonationEntity.find({$and:[{'city':regexcity},{'state':regexstate}]}, function (err, locs) {
             if (err) {
                 rej({
                     type: false,

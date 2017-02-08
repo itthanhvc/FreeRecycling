@@ -36,12 +36,12 @@ export class DataService {
         }
     }
     getStates(){
-        return this.http.get(AppConstant.SERVER_URL + '/api/location');
+        return this.http.get(AppConstant.SERVER_URL + '/api/location',this.jwt());
     }
     getCitiesByState(state:string){
-        return this.http.get(AppConstant.SERVER_URL + '/api/location/'+state);
+        return this.http.get(AppConstant.SERVER_URL + '/api/location/'+state,this.jwt());
     }
     getDonationsByCityAndState(city:string,state:string){
-        return this.http.get(AppConstant.SERVER_URL + '/api/location/'+city+'/'+state, this.jwt());
+        return this.http.post(AppConstant.SERVER_URL + '/api/location/state/city',{city:city,state:state},this.jwt());
     }
 }
