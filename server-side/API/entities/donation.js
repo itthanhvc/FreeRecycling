@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var DonationSchema = new mongoose.Schema({
-    _id : String,
     itemName : String,
     shortDescription : String,
     itemDetails : String,
@@ -9,6 +8,7 @@ var DonationSchema = new mongoose.Schema({
     category : String,
     state : String,
     city : String,
+    location: [Number, Number],
     long : String,
     lat : String,
     imageUrl : String

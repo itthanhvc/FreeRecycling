@@ -177,30 +177,21 @@ DataService.prototype.postNewDonation = function (form) {
         category: form.category,
         state: form.state,
         city: form.city,
+        location: [parseFloat(form.long), parseFloat(form.lat)],
         long: form.long,
         lat: form.lat,
-        imageUrl: "http://localhost:3000/images/" + newImageName
+        imageUrl: "http://localhost:3000/images/profilephoto.jpg" //+ newImageName
     });
 
-    console.log(imageId.value);
-    console.log(__dirname + "/../..");
-    fs.writeFile(__dirname + '/../public/images/' + newImageName, form.image, 'binary', function (err) {
+    /*fs.writeFile(__dirname + '/../public/images/' + newImageName, form.image, 'binary', function (err) {
         if (err) throw err;
         console.log('Done');
-    })
+    })*/
 
-
-    return new Promise((res, rej) => {//change with save
-        donation.find({}, function (err, don) {
-            if (err) {
-                rej({
-                    type: false,
-                    data: "Error occured: " + err
-                });
-            } else {
-                res(don);
-            }
-        })
-    })
+    return new Promise((res, rej) => {
+        donation.save()
+            .then(response => res(response))
+            .catch(err => rej(err))
+    });
 }
 module.exports = new DataService();
