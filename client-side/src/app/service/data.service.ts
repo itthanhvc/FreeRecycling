@@ -10,21 +10,18 @@ export class DataService {
         return this.http.post(AppConstant.SERVER_URL + '/api/user/signup', { user: user }, this.jwt()).map((response: Response) => response.json());
     }
 
-    getMyDontations(email:string){
+    getMyDontations(email: string) {
         let params = new URLSearchParams();
         params.set('email', email);
-        return this.http.get(AppConstant.SERVER_URL + '/api/donations/mydonations?email='+email, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(AppConstant.SERVER_URL + '/api/donations/mydonations?email=' + email, this.jwt()).map((response: Response) => response.json());
     }
 
-    getNearbyDonations(long, lat){
-        let params = new URLSearchParams();
-        params.set('long', long);
-        params.set('lat', lat);
-        return this.http.get(AppConstant.SERVER_URL + '/api/donations/nearby', {search: params}).map((response: Response) => response.json());
+    getNearbyDonations(long, lat) {
+        return this.http.post(AppConstant.SERVER_URL + '/api/donations/nearby', { long: long, lat: lat }, this.jwt()).map((response: Response) => response.json());
     }
 
-    postNewDonation(form){
-        return this.http.post(AppConstant.SERVER_URL + '/api/donations/newdonation', {form:form}, this.jwt()).map((response: Response) => response.json());
+    postNewDonation(form) {
+        return this.http.post(AppConstant.SERVER_URL + '/api/donations/newdonation', { form: form }, this.jwt()).map((response: Response) => response.json());
     }
 
     private jwt() {
@@ -35,13 +32,13 @@ export class DataService {
             return new RequestOptions({ headers: headers });
         }
     }
-    getStates(){
-        return this.http.get(AppConstant.SERVER_URL + '/api/location',this.jwt());
+    getStates() {
+        return this.http.get(AppConstant.SERVER_URL + '/api/location', this.jwt());
     }
-    getCitiesByState(state:string){
-        return this.http.get(AppConstant.SERVER_URL + '/api/location/'+state,this.jwt());
+    getCitiesByState(state: string) {
+        return this.http.get(AppConstant.SERVER_URL + '/api/location/' + state, this.jwt());
     }
-    getDonationsByCityAndState(city:string,state:string){
-        return this.http.post(AppConstant.SERVER_URL + '/api/location/state/city',{city:city,state:state},this.jwt());
+    getDonationsByCityAndState(city: string, state: string) {
+        return this.http.post(AppConstant.SERVER_URL + '/api/location/state/city', { city: city, state: state }, this.jwt()).map((response: Response) => response.json());;
     }
 }

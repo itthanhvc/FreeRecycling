@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../service/data.service';
+import { DonationComponent } from '../donation/donation.component';
 
 @Component({
   selector: 'app-state',
@@ -15,7 +16,11 @@ export class StateComponent implements OnInit {
   iscity: boolean;
   isitem: boolean;
   braidCumb: Object;
-  constructor(private route: ActivatedRoute, private dataservice: DataService) {  
+  location = {
+    state: "",
+    city: ""
+  };
+  constructor(private route: ActivatedRoute, private dataservice: DataService) {
     dataservice.getStates().subscribe(res => {
       this.states = res.json();
     });
@@ -24,7 +29,8 @@ export class StateComponent implements OnInit {
     this.iscity = false;
     this.isitem = false;
   }
-  onStateClick(value: string) {    
+  onStateClick(value: string) {
+    this.location.state = value;
     this.braidCumb['state'] = value;
     this.dataservice.getCitiesByState(this.braidCumb['state']).subscribe(res => {
       this.cities = res.json();
@@ -33,11 +39,12 @@ export class StateComponent implements OnInit {
     this.iscity = true;
     this.isitem = false;
   }
-  onCityClick(value: string) {    
+  onCityClick(value: string) {
+    this.location.city = value;
     this.braidCumb['city'] = value;
-    this.dataservice.getDonationsByCityAndState(this.braidCumb['city'],this.braidCumb['state']).subscribe(res => {
-      this.donations = res.json();
-    });
+    // this.dataservice.getDonationsByCityAndState(this.braidCumb['city'], this.braidCumb['state']).subscribe(res => {
+    //   this.donations = res.json();
+    // });
     this.isstate = false;
     this.iscity = false;
     this.isitem = true;
@@ -54,13 +61,13 @@ export class StateComponent implements OnInit {
     this.braidCumb['state'] = '';
     this.isstate = false;
     this.iscity = true;
-    this.isitem = false;    
+    this.isitem = false;
   }
   onCityBraidCumb() {
     this.braidCumb['item'] = '';
     this.isstate = false;
     this.iscity = false;
-    this.isitem = true;    
+    this.isitem = true;
   }
   onItemBraidCumb() {
     // this.isstate = false;

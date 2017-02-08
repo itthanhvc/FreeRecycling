@@ -1,5 +1,5 @@
 var UserEntity = require('../entities/User');
-var LocationEntity=require('../entities/Location');
+var LocationEntity = require('../entities/Location');
 var DonationEntity = require('../entities/Donation');
 var Guid = require('guid');
 var jwt = require("jsonwebtoken");
@@ -101,11 +101,11 @@ DataService.prototype.getStates = function () {
                 res(locs.sort());
             }
         });
- });
+    });
 }
 DataService.prototype.getCitiesByState = function (state) {
     return new Promise((res, rej) => {
-        LocationEntity.distinct('city',{'state':state}, function (err, locs) {
+        LocationEntity.distinct('city', { 'state': state }, function (err, locs) {
             if (err) {
                 rej({
                     type: false,
@@ -115,13 +115,13 @@ DataService.prototype.getCitiesByState = function (state) {
                 res(locs.sort());
             }
         });
- });
+    });
 }
-DataService.prototype.getDonationsByCityAndState = function (city,state) {
+DataService.prototype.getDonationsByCityAndState = function (city, state) {
     return new Promise((res, rej) => {
         var regexcity = new RegExp(["^", city, "$"].join(""), "i");
         var regexstate = new RegExp(["^", state, "$"].join(""), "i");
-        DonationEntity.find({$and:[{'city':regexcity},{'state':regexstate}]}, function (err, locs) {
+        DonationEntity.find({ $and: [{ 'city': regexcity }, { 'state': regexstate }] }, function (err, locs) {
             if (err) {
                 rej({
                     type: false,
@@ -131,11 +131,28 @@ DataService.prototype.getDonationsByCityAndState = function (city,state) {
                 res(locs);
             }
         });
- });
+    });
 }
-DataService.prototype.getMyDonations = function(email) {
+DataService.prototype.getNearByDonations = function (long, lat) {
     return new Promise((res, rej) => {
-        DonationEntity.find({'email': email}, function (err, dons) {
+        var geoquery = {
+            'location': { '$geoWithin': { '$center': [[long, lat], 10] } }
+        };
+        DonationEntity.find(geoquery, function (err, locs) {
+            if (err) {
+                rej({
+                    type: false,
+                    data: "Error occured: " + err
+                });
+            } else {
+                res(locs);
+            }
+        });
+    });
+}
+DataService.prototype.getMyDonations = function (email) {
+    return new Promise((res, rej) => {
+        DonationEntity.find({ 'email': email }, function (err, dons) {
             if (err) {
                 rej({
                     type: false,
@@ -144,43 +161,37 @@ DataService.prototype.getMyDonations = function(email) {
             } else {
                 res(dons);
             }
-        }); 
+        });
     })
 }
 
-DataService.prototype.getNerabyDonations = function(long, lat) {
-    return new Promise ((res,rej) => {
-
-    })
-}
-
-DataService.prototype.postNewDonation = function(form) {
+DataService.prototype.postNewDonation = function (form) {
     const imageId = Guid.create();
     const newImageName = imageId.value + '.jpg';//extension is gonna change
     var donation = new DonationEntity({
-        itemName : form.itemName,
-        shortDescription : form.shortDescription,
-        itemDetails : form.itemDetails,
-        email : form.email,
-        phone : form.phone,
-        category : form.category,
-        state : form.state,
-        city : form.city,
-        long : form.long,
-        lat : form.lat,
-        imageUrl : "http://localhost:3000/images/" + newImageName
+        itemName: form.itemName,
+        shortDescription: form.shortDescription,
+        itemDetails: form.itemDetails,
+        email: form.email,
+        phone: form.phone,
+        category: form.category,
+        state: form.state,
+        city: form.city,
+        long: form.long,
+        lat: form.lat,
+        imageUrl: "http://localhost:3000/images/" + newImageName
     });
 
     console.log(imageId.value);
     console.log(__dirname + "/../..");
-    fs.writeFile(__dirname + '/../public/images/'+newImageName, form.image, 'binary', function(err){
-        if(err) throw err;
+    fs.writeFile(__dirname + '/../public/images/' + newImageName, form.image, 'binary', function (err) {
+        if (err) throw err;
         console.log('Done');
     })
-    
 
-    return new Promise ((res,rej) => {//change with save
-        donation.find({}, function(err, don) {
+
+    return new Promise((res, rej) => {//change with save
+        donation.find({}, function (err, don) {
             if (err) {
                 rej({
                     type: false,
