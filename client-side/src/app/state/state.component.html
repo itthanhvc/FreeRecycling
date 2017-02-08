@@ -26,8 +26,8 @@
         <button class="btn btn-link" (click)="onCityClick(city)">{{city}}</button></li>
     </ul>
     <ul *ngIf="isitem" id="item">
-      <li *ngFor="let item of items">
-        <button class="btn btn-link" (click)="onItemClick(item)">{{item}}</button></li>
+      <li *ngFor="let item of donations">
+        <button class="btn btn-link" (click)="onItemClick(item.itemName)">{{item.itemName}}</button></li>
     </ul>
   </div>
 </div>

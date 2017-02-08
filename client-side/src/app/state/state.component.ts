@@ -15,16 +15,10 @@ export class StateComponent implements OnInit {
   iscity: boolean;
   isitem: boolean;
   braidCumb: Object;
-  constructor(private route: ActivatedRoute, private dataservice: DataService) {
-    // this.states = ["Iowa", "Illinois", "California", "Iowa", "Illinois", "California", "Iowa", "Illinois", "California"];
+  constructor(private route: ActivatedRoute, private dataservice: DataService) {  
     dataservice.getStates().subscribe(res => {
-      // console.log(res.json());
       this.states = res.json();
     });
-    // console.log(jsonStates);
-
-   // this.cities = ["Fairfield", "Ottumwa", "Burlington"];
-    // this.donations = ["Bike1", "Bike2", "Bike3"];
     this.braidCumb = { 'state': '', 'city': '', 'item': '' };
     this.isstate = true;
     this.iscity = false;
@@ -43,7 +37,6 @@ export class StateComponent implements OnInit {
     this.braidCumb['city'] = value;
     this.dataservice.getDonationsByCityAndState(this.braidCumb['city'],this.braidCumb['state']).subscribe(res => {
       this.donations = res.json();
-      console.log(this.donations);
     });
     this.isstate = false;
     this.iscity = false;

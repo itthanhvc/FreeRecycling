@@ -1,6 +1,6 @@
 var UserEntity = require('../entities/User');
 var LocationEntity=require('../entities/Location');
-var DonationEntity = require('../entities/donation');
+var DonationEntity = require('../entities/Donation');
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
 function DataService() {
@@ -116,7 +116,9 @@ DataService.prototype.getCitiesByState = function (state) {
 }
 DataService.prototype.getDonationsByCityAndState = function (city,state) {
     return new Promise((res, rej) => {
-        DonationEntity.find({$and:[{'city':city,$options:"i"},{'state':state,$options:"i"}]}, function (err, locs) {
+        var regexcity = new RegExp(["^", city, "$"].join(""), "i");
+        var regexstate = new RegExp(["^", state, "$"].join(""), "i");
+        DonationEntity.find({$and:[{'city':regexcity},{'state':regexstate}]}, function (err, locs) {
             if (err) {
                 rej({
                     type: false,
@@ -130,14 +132,14 @@ DataService.prototype.getDonationsByCityAndState = function (city,state) {
 }
 DataService.prototype.getMyDonations = function(email) {
     return new Promise((res, rej) => {
-        DonationEntity.find({'email': email}, function (err, locs) {
+        DonationEntity.find({'email': email}, function (err, dons) {
             if (err) {
                 rej({
                     type: false,
                     data: "Error occured: " + err
                 });
             } else {
-                res(locs);
+                res(dons);
             }
         }); 
     })
@@ -150,8 +152,31 @@ DataService.prototype.getNerabyDonations = function(long, lat) {
 }
 
 DataService.prototype.postNewDonation = function(form) {
-    return new Promise ((res,rej) => {
-
+    var donation = new DonationEntity({
+        itemName : form.itemName,
+        shortDescription : form.shortDescription,
+        itemDetails : form.itemDetails,
+        email : form.email,
+        phone : form.phone,
+        category : form.category,
+        state : form.state,
+        city : form.city,
+        long : form.long,
+        lat : form.lat,
+        imageUrl : "default"
+    });
+    console.log(donation);
+    return new Promise ((res,rej) => {//change with save
+        donation.find({}, function(err, don) {
+            if (err) {
+                rej({
+                    type: false,
+                    data: "Error occured: " + err
+                });
+            } else {
+                res(don);
+            }
+        })
     })
 }
 module.exports = new DataService();
