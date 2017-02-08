@@ -13,14 +13,18 @@ export class DataService {
     getMyDontations(email:string){
         let params = new URLSearchParams();
         params.set('email', email);
-        return this.http.get(AppConstant.SERVER_URL + '/donations/mydonations', {search: params});
+        return this.http.get(AppConstant.SERVER_URL + '/donations/mydonations', {search: params}).map((response: Response) => response.json());
     }
 
-    getCloseDonations(long, lat){
+    getNearbyDonations(long, lat){
         let params = new URLSearchParams();
         params.set('long', long);
         params.set('lat', lat);
-        return this.http.get(AppConstant.SERVER_URL + '/donations/close', {search: params});
+        return this.http.get(AppConstant.SERVER_URL + '/donations/nearby', {search: params}).map((response: Response) => response.json());
+    }
+
+    postNewDonation(){
+        return this.http.post(AppConstant.SERVER_URL + '/newDonation', this.jwt()).map((response: Response) => response.json());
     }
 
     private jwt() {
