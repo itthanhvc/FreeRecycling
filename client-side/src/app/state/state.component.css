@@ -16,6 +16,9 @@
     height: 10px;
     width: 150px;
 }
+.margin-left20{
+    margin-left: 20px;
+}
 /* Breadcrumbs from http://bootsnipp.com/snippets/featured/triangle-breadcrumbs-arrows */
 .btn-breadcrumb .btn:not(:last-child):after {
   content: " ";
