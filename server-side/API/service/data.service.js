@@ -128,4 +128,21 @@ DataService.prototype.getDonationsByCityAndState = function (city,state) {
         });
  });
 }
+DataService.prototype.getMyDonations = function(email) {
+    return new Promise((res, rej) => {
+        
+    })
+}
+
+DataService.prototype.getNerabyDonations = function(long, lat) {
+    return new Promise ((res,rej) => {
+
+    })
+}
+
+DataService.prototype.postNewDonation = function(form) {
+    return new Promise ((res,rej) => {
+
+    })
+}
 module.exports = new DataService();
