@@ -33,7 +33,7 @@
         <button class="btn btn-link" (click)="onCityClick(city)">{{city}}</button></li>
     </ul>
   </div>
-  <div *ngIf="isitem">
+  <div class="margin-left20" *ngIf="isitem">
     <app-donation [Type]="1" [Location]="location"></app-donation>
   </div>
 </div>
