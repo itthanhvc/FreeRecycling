@@ -7,4 +7,4 @@ var LocationSchema = new mongoose.Schema({
     pop: String,
 });
 var Location = mongoose.model('zips', LocationSchema);
-module.exports =Location;
+module.exports = Location;
