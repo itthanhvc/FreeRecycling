@@ -1,37 +1,5 @@
-.myDonations{
-    display: inline-block;
-    width:200px;
-    height:150px;
-    border: 2px solid;
-    border-radius: 10px;
-    margin: 20px;
-    padding: 5px 0px 5px 0px;
-}
-.myDonations a img {
-    width:30%;
-    height: 48px;
-}
-
-.myDonations a p {
-    color: grey;
-    font-size: 11px;
-    margin: 5px 0px 0px 5px;
-}
-
-.newDonationDiv{
-    margin-left: auto;
-    margin-right: auto;
-    width: 600px;
-    padding:15px;
-}
 .padding-top10{
     padding-top: 10px;
-}
-.padding-left0{
-    padding-left: 0px;
-}
-.padding-right0{
-    padding-right: 0px;
 }
 .src-image {
   display: none;

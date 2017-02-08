@@ -37,8 +37,6 @@ export class MyDonationComponent implements OnInit {
     });
   }
 
-
-
   ngOnInit() {
     //console.log(this.authenticationService.UserLogin.);
     if (navigator.geolocation) {
@@ -50,7 +48,6 @@ export class MyDonationComponent implements OnInit {
   getMyDonations() {
     this.ds.getMyDontations(this.authenticationService.UserLogin.email).subscribe(result => this.myDonations = result);
   }
-
 
   setPosition(position) {
     this.myLocation.set = true;

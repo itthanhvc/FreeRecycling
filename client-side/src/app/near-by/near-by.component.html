@@ -1,6 +1,8 @@
-<div class="myDonations" *ngFor="let donation of myDonations">
+<!--<div class="myDonations" *ngFor="let donation of myDonations">
   <a [routerLink]="['/donationdetails', donation._id]">
     <img src="{{donation.imageUrl}}" alt="myImage">
     <p>{{donation.itemName}}<br/>{{donation.email}}</p>
   </a>
-</div>
+</div>-->
+
+<app-donation [Type]="2"></app-donation>

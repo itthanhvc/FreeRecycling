@@ -130,10 +130,10 @@ DataService.prototype.getDonationsByCityAndState = function (city, state) {
         });
     });
 }
-DataService.prototype.getNearByDonations = function (lat, long) {
+DataService.prototype.getNearByDonations = function (long, lat) {
     return new Promise((res, rej) => {
         var geoquery = {
-            'location': { '$geoWithin': { '$center': [[long, lat], 0.1] } }
+            'location': { '$geoWithin': { '$center': [[long, lat],  10] } }
         };
         DonationEntity.find(geoquery, function (err, locs) {
             if (err) {
@@ -159,12 +159,6 @@ DataService.prototype.getMyDonations = function (email) {
                 res(dons);
             }
         });
-    })
-}
-
-DataService.prototype.getNerabyDonations = function (long, lat) {
-    return new Promise((res, rej) => {
-
     })
 }
 DataService.prototype.postNewDonation = function (form) {

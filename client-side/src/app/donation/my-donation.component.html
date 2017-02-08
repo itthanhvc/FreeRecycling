@@ -1,21 +1,6 @@
 <div class="row">
   <div class="col-md-8">
-    <div class="row">
-      <!--<a [routerLink]="['/donationdetails', donation._id]">-->
-      <div  *ngFor="let donation of myDonations" class="col-sm-3 padding-top10">
-            <div class="card">
-                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                <div class="avatar">
-                    <img src="{{donation.imageUrl}}" alt="myImage">
-                </div>
-                <div class="content">
-                    <p>{{donation.itemName}} <br>
-                       {{donation.email}}</p>
-                    <p><button type="button" class="btn btn-default" [routerLink]="['/donationdetails', donation._id]">Contact</button></p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-donation [Type]="3"></app-donation>
   </div>
   <div class="col-md-4 col-xs-12">
     <div class="panel panel-primary">
