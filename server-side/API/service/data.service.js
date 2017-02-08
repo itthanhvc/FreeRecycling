@@ -140,7 +140,7 @@ DataService.prototype.getNerabyDonations = function(long, lat) {
     })
 }
 
-DataService.prototype.postNewDonation() = function(form) {
+DataService.prototype.postNewDonation = function(form) {
     return new Promise ((res,rej) => {
 
     })
