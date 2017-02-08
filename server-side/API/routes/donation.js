@@ -6,7 +6,10 @@ router.get('/mydonations', function (req, res) {
     dataService.getMyDonations(req.query['email']).then(response => res.json(response))
         .catch(error => res.json(error));
 })
-
+router.get('/getdonationbyguid/:guid', function (req, res) {
+    dataService.getDonationByGuid(req.params['guid']).then(response => res.json(response))
+        .catch(error => res.json(error));
+})
 router.post('/nearby', function (req, res) {
     dataService.getNearByDonations(req.body.long, req.body.lat).then(response => res.json(response))
         .catch(error => res.json(error));

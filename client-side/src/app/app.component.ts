@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./css/Main.css', './css/utilities.css']
+  styleUrls: ['./content/css/Main.css', './content/css/utilities.css']
 })
 
 export class AppComponent {

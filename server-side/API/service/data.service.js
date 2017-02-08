@@ -5,6 +5,7 @@ var Guid = require('guid');
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
 var fs = require("fs");
+var mongoose = require('mongoose');
 
 function DataService() {
 
@@ -176,7 +177,21 @@ DataService.prototype.getMyDonations = function (email) {
         });
     })
 }
-
+DataService.prototype.getDonationByGuid = function (guid) {
+    var id = mongoose.Types.ObjectId(guid);
+    return new Promise((res, rej) => {
+        DonationEntity.findOne({ '_id': id }, function (err, don) {
+            if (err) {
+                rej({
+                    type: false,
+                    data: "Error occured: " + err
+                });
+            } else {
+                res(don);
+            }
+        });
+    })
+}
 DataService.prototype.postNewDonation = function (form) {
     const imageId = Guid.create();
     const newImageName = imageId.value + '.jpg';//extension is gonna change

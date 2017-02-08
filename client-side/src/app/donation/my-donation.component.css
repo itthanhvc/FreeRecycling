@@ -1,6 +1,9 @@
 .padding-top10{
     padding-top: 10px;
 }
+.max-widthDonation{
+   max-width: 230px;
+  }
 .src-image {
   display: none;
 }

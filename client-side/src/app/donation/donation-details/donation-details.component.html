@@ -1,0 +1,22 @@
+<div class="wrapper row">
+  <div class="preview col-md-6">
+    <div class="preview-pic tab-content">
+      <div class="tab-pane active" id="pic-1">
+        <img src="{{donation.imageUrl}}" /></div>
+    </div>
+  </div>
+  <div class="details col-md-6">
+    <h3 class="product-title">{{donation.itemName}}</h3>
+    <p class="product-description">{{donation.itemDetails}}</p>
+    <form>
+      <div class="form-group">
+        <label>Category: </label>
+        <span>{{donation.category}}</span>
+      </div>
+      <div class="form-group"><label>City: </label><span>{{donation.city}}</span></div>
+      <div class="form-group"><label>State: </label><span>{{donation.state}}</span></div>
+      <div class="form-group"><label>Email: </label><span>{{donation.email}}</span></div>
+      <div class="form-group"><label>Phone: </label><span>{{donation.phone}}</span></div>
+    </form>
+  </div>
+</div>

@@ -23,7 +23,7 @@
               <a [class.disabled]="!isAuthentication" [routerLink]="['nearby']">Near By<span class="sr-only">(current)</span></a>
             </li>
             <li>
-              <a [class.disabled]="!isAuthentication" [routerLink]="['mydonate']">My Donation<span class="sr-only">(current)</span></a>
+              <a [class.disabled]="!isAuthentication" [routerLink]="['me']">My Donation<span class="sr-only">(current)</span></a>
             </li>
           </ul>
           <ul class="nav nav navbar-right">
@@ -51,7 +51,7 @@
                 <li role="menuitem">
                   <a [class.disabled]="!isAuthentication" class="dropdown-item" [routerLink]="['nearby']">Near By<span class="sr-only">(current)</span></a>
                 </li>
-                <li role="menuitem"><a [class.disabled]="!isAuthentication" class="dropdown-item" [routerLink]="['mydonate']" routerLinkActive="active">My Donation<span class="sr-only">(current)</span></a></li>
+                <li role="menuitem"><a [class.disabled]="!isAuthentication" class="dropdown-item" [routerLink]="['me']" routerLinkActive="active">My Donation<span class="sr-only">(current)</span></a></li>
               </ul>
             </li>
           </ul>
@@ -60,16 +60,13 @@
     </nav>
   </div>
 </header>
-<div>
-  <div class="appContent">
-    <div class="container">
-      <div class="slide-animation">
-        <router-outlet></router-outlet>
-      </div>
+<div class="appContent">
+  <div class="container">
+    <div class="slide-animation">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
-
 <footer>
   <div class="container">Copyright © Thanh, Utku and Sunil MUM students. All rights reserved.
   </div>
