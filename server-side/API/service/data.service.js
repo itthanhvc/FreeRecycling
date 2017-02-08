@@ -1,6 +1,11 @@
 var UserEntity = require('../entities/User');
+<<<<<<< HEAD
 var LocationEntity = require('../entities/Location');
 var DonationEntity = require('../entities/donation');
+=======
+var LocationEntity=require('../entities/Location');
+var DonationEntity = require('../entities/Donation');
+>>>>>>> 64497d9784cb0824d96c08d0d77f3f81a7dce165
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
 function DataService() {
@@ -167,7 +172,6 @@ DataService.prototype.getNerabyDonations = function (long, lat) {
 
     })
 }
-
 DataService.prototype.postNewDonation = function (form) {
     var DonationEntity = new DonationEntity({
         itemName: form.itemName,
