@@ -13,7 +13,6 @@ router.post('/nearby', function (req, res) {
 })
 
 router.post('/newdonation', function (req, res) {
-    console.log("donation router");
     dataService.postNewDonation(req.body.form)
         .then(response => res.json(response))
         .catch(error => res.json(error));

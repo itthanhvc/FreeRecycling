@@ -1,8 +1,11 @@
 var UserEntity = require('../entities/User');
 var LocationEntity = require('../entities/Location');
-var DonationEntity = require('../entities/donation');
+var DonationEntity = require('../entities/Donation');
+var Guid = require('guid');
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
+var fs = require("fs");
+
 function DataService() {
 
 }
@@ -133,7 +136,7 @@ DataService.prototype.getDonationsByCityAndState = function (city, state) {
 DataService.prototype.getNearByDonations = function (long, lat) {
     return new Promise((res, rej) => {
         var geoquery = {
-            'location': { '$geoWithin': { '$center': [[long, lat],  10] } }
+            'location': { '$geoWithin': { '$center': [[long, lat], 10] } }
         };
         DonationEntity.find(geoquery, function (err, locs) {
             if (err) {
@@ -161,8 +164,11 @@ DataService.prototype.getMyDonations = function (email) {
         });
     })
 }
+
 DataService.prototype.postNewDonation = function (form) {
-    var DonationEntity = new DonationEntity({
+    const imageId = Guid.create();
+    const newImageName = imageId.value + '.jpg';//extension is gonna change
+    var donation = new DonationEntity({
         itemName: form.itemName,
         shortDescription: form.shortDescription,
         itemDetails: form.itemDetails,
@@ -173,11 +179,19 @@ DataService.prototype.postNewDonation = function (form) {
         city: form.city,
         long: form.long,
         lat: form.lat,
-        imageUrl: "default"
+        imageUrl: "http://localhost:3000/images/" + newImageName
     });
-    console.log(DonationEntity);
+
+    console.log(imageId.value);
+    console.log(__dirname + "/../..");
+    fs.writeFile(__dirname + '/../public/images/' + newImageName, form.image, 'binary', function (err) {
+        if (err) throw err;
+        console.log('Done');
+    })
+
+
     return new Promise((res, rej) => {//change with save
-        DonationEntity.find({}, function (err, don) {
+        donation.find({}, function (err, don) {
             if (err) {
                 rej({
                     type: false,
