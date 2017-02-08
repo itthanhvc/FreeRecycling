@@ -1,6 +1,5 @@
 var UserEntity = require('../entities/User');
 var LocationEntity=require('../entities/Location');
-var DonationEntity=require('../entities/Donation');
 var User = require('../entities/User');
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
