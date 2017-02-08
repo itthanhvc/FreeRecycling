@@ -10,7 +10,7 @@ import { DataService } from '../service/data.service';
 export class StateComponent implements OnInit {
   states: Array<string> = [];
   cities: Array<string> = [];
-  items: Array<string> = [];
+  donations: Array<string> = [];
   isstate: boolean;
   iscity: boolean;
   isitem: boolean;
@@ -24,7 +24,7 @@ export class StateComponent implements OnInit {
     // console.log(jsonStates);
 
    // this.cities = ["Fairfield", "Ottumwa", "Burlington"];
-    this.items = ["Bike1", "Bike2", "Bike3"];
+    // this.donations = ["Bike1", "Bike2", "Bike3"];
     this.braidCumb = { 'state': '', 'city': '', 'item': '' };
     this.isstate = true;
     this.iscity = false;
@@ -41,6 +41,10 @@ export class StateComponent implements OnInit {
   }
   onCityClick(value: string) {    
     this.braidCumb['city'] = value;
+    this.dataservice.getDonationsByCityAndState(this.braidCumb['city'],this.braidCumb['state']).subscribe(res => {
+      this.donations = res.json();
+      console.log(this.donations);
+    });
     this.isstate = false;
     this.iscity = false;
     this.isitem = true;
@@ -74,9 +78,11 @@ export class StateComponent implements OnInit {
     this.isstate = true;
     this.iscity = false;
     this.isitem = false;
+    this.braidCumb['item'] = '';
+    this.braidCumb['city'] = '';
+    this.braidCumb['state'] = '';
   }
   ngOnInit() {
-    console.log(this.braidCumb['item']);
   }
 
 }

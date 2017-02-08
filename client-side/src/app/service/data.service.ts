@@ -41,4 +41,7 @@ export class DataService {
     getCitiesByState(state:string){
         return this.http.get(AppConstant.SERVER_URL + '/api/location/'+state);
     }
+    getDonationsByCityAndState(city:string,state:string){
+        return this.http.get(AppConstant.SERVER_URL + '/api/location/'+city+'/'+state);
+    }
 }
