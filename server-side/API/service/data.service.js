@@ -4,6 +4,7 @@ var DonationEntity = require('../entities/Donation');
 var Guid = require('guid');
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
+var fs = require("fs");
 
 function DataService() {
 
@@ -154,6 +155,8 @@ DataService.prototype.getNerabyDonations = function(long, lat) {
 }
 
 DataService.prototype.postNewDonation = function(form) {
+    const imageId = Guid.create();
+    const newImageName = imageId.value + '.jpg';//extension is gonna change
     var donation = new DonationEntity({
         itemName : form.itemName,
         shortDescription : form.shortDescription,
@@ -165,10 +168,15 @@ DataService.prototype.postNewDonation = function(form) {
         city : form.city,
         long : form.long,
         lat : form.lat,
-        imageUrl : "default"
+        imageUrl : "http://localhost:3000/images/" + newImageName
     });
-    var imageId = Guid.create();
-    console.log(form.image.name);
+
+    console.log(imageId.value);
+    console.log(__dirname + "/../..");
+    fs.writeFile(__dirname + '/../public/images/'+newImageName, form.image, 'binary', function(err){
+        if(err) throw err;
+        console.log('Done');
+    })
     
 
     return new Promise ((res,rej) => {//change with save
