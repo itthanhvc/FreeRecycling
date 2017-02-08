@@ -22,6 +22,7 @@ body {
     background-color: #FFF;
     padding:0px;
     margin:0px;
+   
 }
 header{
     background-color: #FFF;
@@ -104,6 +105,12 @@ ul.topnav li.icon {display: none;}
 .appContent{
     min-height: 645px;
     margin-top: 50px;
+   
+}
+.appContent::before{
+ background: url(/app/content/images/free_vector_bg_1.jpg) no-repeat center center fixed;
+    background-size: 50%;
+    opacity: .6;
 }
 .container {
     padding-right: 15px;

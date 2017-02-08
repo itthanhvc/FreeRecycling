@@ -12,7 +12,7 @@ import { MyDonationComponent } from './donation/my-donation.component';
 import { DonationComponent } from './donation/donation.component';
 import { NearByComponent } from './near-by/near-by.component';
 
-import { DonationDetailsComponent } from './donation-details/donation-details.component';
+import { DonationDetailsComponent } from './donation/donation-details/donation-details.component';
 import { CollapseDirective } from 'ng2-bootstrap';
 import { AuthenticationService } from './service/authentication.service';
 import { DataService } from './service/data.service';
