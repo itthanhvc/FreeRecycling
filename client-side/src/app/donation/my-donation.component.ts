@@ -25,7 +25,7 @@ export class MyDonationComponent implements OnInit {
       "itemName": ['Item name', Validators.required],
       "shortDescription": [""],
       "itemDetails": [""],
-      "email": ["utkuguleviz@gmail.com", Validators.required],
+      "email": [this.authenticationService.UserLogin.email, Validators.required],
       "phone": [""],
       "category": [""],
       "state": ["State", Validators.required],
