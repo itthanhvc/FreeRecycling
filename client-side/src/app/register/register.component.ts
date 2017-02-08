@@ -12,6 +12,7 @@ import { AuthenticationService } from '../service/authentication.service';
 export class RegisterComponent implements OnInit {
   model: User;
   loading = false;
+  error: string;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -24,10 +25,16 @@ export class RegisterComponent implements OnInit {
     this.authenticationService.logout();
   }
   register() {
+    this.error = "";
     this.loading = true;
     this.dataService.createUser(this.model)
       .subscribe(
-      data => {
+      response => {
+        this.loading = false;
+        if (response.type == false) {
+          this.error = response.data;
+          return;
+        }
         this.router.navigate(['/login']);
       },
       error => {

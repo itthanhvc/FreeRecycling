@@ -20,7 +20,7 @@ DataService.prototype.EnsureAuthorized = function (req, res, next) {
 }
 DataService.prototype.getUserToken = function (email, password) {
     return new Promise((res, rej) => {
-        UserEntity.findOne({ email: email, password: password }, function (err, user) {
+        UserEntity.findOne({ email: email, password: password }, { "password": 0 }, function (err, user) {
             if (err) {
                 rej({
                     type: false,
@@ -45,7 +45,7 @@ DataService.prototype.getUserToken = function (email, password) {
 }
 DataService.prototype.getUser = function (email) {
     return new Promise((res, rej) => {
-        UserEntity.findOne({ email: email }, function (err, user) {
+        UserEntity.findOne({ email: email }, { "password": 0 }, function (err, user) {
             if (err) {
                 rej({
                     type: false,

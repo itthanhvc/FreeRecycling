@@ -1,28 +1,5 @@
 <header class="topBanner">
-  <!--class="topBanner"-->
   <div class="container">
-    <!--<nav>
-      <ul class="nav navBar nav-left">
-        <li>
-          <span><i class="fa fa-recycle"></i> <strong> Free Recycling</strong> - CS572 Modern Web Application </span>
-        </li>
-      </ul>
-      <ul class="nav navBars">
-        <li>
-          <button type="button" ng-click="collapse()"><i class="fa fa-bars"></i></button>
-        </li>
-
-      </ul>
-      <ul class="nav navBar nav-left" ng-class="activeClass" data-menu-highlighter data-highlight-class-name="active">
-        <li>
-          <a [routerLink]="['']" routerLinkActive="active">State</a> </li>
-        <li>
-          <a [routerLink]="['nearby']" routerLinkActive="active">Near By</a> </li>
-        <li>
-          <a [routerLink]="['mydonate']" routerLinkActive="active">My Donation</a>
-        </li>
-      </ul>
-    </nav>-->
     <nav class="nav navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -51,10 +28,24 @@
           </ul>
           <ul class="nav nav navbar-right">
             <li dropdown keyboardNav="true">
-              <a href class="dropdown-toggle" role="button" aria-expanded="false" dropdownToggle>
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Andrew Duncan
-                <span class="caret"></span>
-              </a>
+              <ul class="nav navbar-nav">
+                <li *ngIf="isAuthentication">
+                  <a class="dropdown-toggle" role="button" aria-expanded="false" dropdownToggle>
+                    <i class="fa fa-user" aria-hidden="true"></i> {{LoginInfo.fullName}}
+                  </a>
+                </li>
+                <li *ngIf="isAuthentication">
+                  <a class="dropdown-toggle" role="button" aria-expanded="false" dropdownToggle (click)="logout()">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
+                  </a>
+                </li>
+                <li *ngIf="!isAuthentication">
+                  <a [routerLink]="['/login']" class="dropdown-toggle" role="button" aria-expanded="false" dropdownToggle>
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> Log in
+                  </a>
+                </li>
+              </ul>
+
               <ul class="dropdown-menu" role="menu">
                 <li role="menuitem"><a class="dropdown-item" [routerLink]="['']">State<span class="sr-only">(current)</span></a></li>
                 <li role="menuitem">
