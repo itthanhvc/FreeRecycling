@@ -138,18 +138,30 @@ DataService.prototype.getNearByDonations = function (long, lat) {
         var geoquery = {
             'location': { '$geoWithin': { '$center': [[long, lat], 10] } }
         };
-        DonationEntity.find(geoquery, function (err, locs) {
+        var query = 'db.runCommand({geoNear:"donations",near:[long,lat]})';
+        DonationEntity.collection.geoNear(long, lat, { distanceMultiplier: 3959 }, function (err, docs) {
+            var distance = 0;
+            var match;
             if (err) {
                 rej({
                     type: false,
                     data: "Error occured: " + err
                 });
             } else {
-                res(locs);
+                if (docs.results.length == 1) {
+                    distance = docs.results[0].dis;
+                    match = docs.results[0].obj;
+                    match.distance = distance;
+                    console.log(distance);
+                    console.log(match);
+                    console.log(docs.results);
+                }
+                res(docs.results);
             }
         });
     });
 }
+
 DataService.prototype.getMyDonations = function (email) {
     return new Promise((res, rej) => {
         DonationEntity.find({ 'email': email }, function (err, dons) {
@@ -187,7 +199,7 @@ DataService.prototype.postNewDonation = function (form) {
         if (err) throw err;
         console.log('Done');
     })*/
-    console.log('UTKU'+form.long);
+    console.log('UTKU' + form.long);
     return new Promise((res, rej) => {
         donation.save(function (err, don) {
             don.save(function (err, don1) {

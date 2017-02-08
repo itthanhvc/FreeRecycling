@@ -7,7 +7,7 @@
         <img src="{{donation.imageUrl}}" alt="myImage">
       </div>
       <div class="content">
-        <p>{{donation.itemName}} <br> {{donation.email}}
+        <p>{{donation.obj.itemName}} <br> {{donation.obj.email}}<br>{{donation.dis | number:0}} miles
         </p>
         <p><button type="button" class="btn btn-default" [routerLink]="['/donationdetails', donation._id]">Contact</button></p>
       </div>

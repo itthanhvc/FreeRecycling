@@ -44,23 +44,16 @@ export class StateComponent implements OnInit {
   onCityClick(value: string) {
     this.location.city = value;
     this.braidCumb['city'] = value;
-    // this.dataservice.getDonationsByCityAndState(this.braidCumb['city'], this.braidCumb['state']).subscribe(res => {
-    //   this.donations = res.json();
-    // });
     this.isstate = false;
     this.iscity = false;
     this.isitem = true;
   }
   onItemClick(value: string) {
-    this.braidCumb['item'] = value;
-    // this.isstate = false;
-    // this.iscity = false;
-    // this.isitem = true;    
+    this.braidCumb['item'] = value;  
   }
   onStateBraidCumb() {
     this.braidCumb['item'] = '';
     this.braidCumb['city'] = '';
-    this.braidCumb['state'] = '';
     this.isstate = false;
     this.iscity = true;
     this.isitem = false;
@@ -72,9 +65,6 @@ export class StateComponent implements OnInit {
     this.isitem = true;
   }
   onItemBraidCumb() {
-    // this.isstate = false;
-    // this.iscity = false;
-    // this.isitem = false;
   }
   onHomeBraidCumb() {
     this.isstate = true;
