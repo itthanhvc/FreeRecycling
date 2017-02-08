@@ -8,7 +8,7 @@ router.get('/mydonations', function (req, res) {
 })
 
 router.get('/nearby', function (req, res) {
-    dataService.getMyDonations(req.params['long'], req.params['lat']).then(response => res.json(response))
+    dataService.getNearByDonations(req.body.lat, req.body.long).then(response => res.json(response))
     .catch(error => res.json(error));
 })
 

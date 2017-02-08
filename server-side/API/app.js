@@ -13,6 +13,7 @@ var user = require('./routes/user');
 var location = require('./routes/location');
 var donation = require('./routes/donation');
 var appSettings = require('./app.settings');
+var nearby = require('./routes/nearby');
 
 var app = express();
 app.use(cors())
@@ -27,6 +28,7 @@ app.use('/api/authenticate', auth);
 app.use('/api/user', user);
 app.use('/api/location', location);
 app.use('/api/donations', donation);
+app.use('/api/nearby', nearby);
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');

@@ -1,6 +1,3 @@
-<p>
-  near-by works!
-</p>
 <div class="myDonations" *ngFor="let donation of myDonations">
   <a [routerLink]="['/donationdetails', donation._id]">
     <img src="{{donation.imageUrl}}" alt="myImage">

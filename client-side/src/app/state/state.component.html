@@ -25,9 +25,11 @@
       <li *ngFor="let city of cities">
         <button class="btn btn-link" (click)="onCityClick(city)">{{city}}</button></li>
     </ul>
-    <ul *ngIf="isitem" id="item">
-      <li *ngFor="let item of donations">
-        <button class="btn btn-link" (click)="onItemClick(item.itemName)">{{item.itemName}}</button></li>
-    </ul>
+    <div class="myDonations" *ngFor="let donation of donations">
+      <a [routerLink]="['/donationdetails', donation._id]">
+        <img src="{{donation.imageUrl}}" alt="myImage">
+        <p>{{donation.itemName}}<br/>{{donation.email}}</p>
+      </a>
+    </div>
   </div>
 </div>

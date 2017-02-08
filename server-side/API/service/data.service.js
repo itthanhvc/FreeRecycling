@@ -1,5 +1,5 @@
 var UserEntity = require('../entities/User');
-var LocationEntity=require('../entities/Location');
+var LocationEntity = require('../entities/Location');
 var DonationEntity = require('../entities/donation');
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
@@ -98,11 +98,11 @@ DataService.prototype.getStates = function () {
                 res(locs.sort());
             }
         });
- });
+    });
 }
 DataService.prototype.getCitiesByState = function (state) {
     return new Promise((res, rej) => {
-        LocationEntity.distinct('city',{'state':state}, function (err, locs) {
+        LocationEntity.distinct('city', { 'state': state }, function (err, locs) {
             if (err) {
                 rej({
                     type: false,
@@ -112,13 +112,13 @@ DataService.prototype.getCitiesByState = function (state) {
                 res(locs.sort());
             }
         });
- });
+    });
 }
-DataService.prototype.getDonationsByCityAndState = function (city,state) {
+DataService.prototype.getDonationsByCityAndState = function (city, state) {
     return new Promise((res, rej) => {
         var regexcity = new RegExp(["^", city, "$"].join(""), "i");
         var regexstate = new RegExp(["^", state, "$"].join(""), "i");
-        DonationEntity.find({$and:[{'city':regexcity},{'state':regexstate}]}, function (err, locs) {
+        DonationEntity.find({ $and: [{ 'city': regexcity }, { 'state': regexstate }] }, function (err, locs) {
             if (err) {
                 rej({
                     type: false,
@@ -128,11 +128,28 @@ DataService.prototype.getDonationsByCityAndState = function (city,state) {
                 res(locs);
             }
         });
- });
+    });
 }
-DataService.prototype.getMyDonations = function(email) {
+DataService.prototype.getNearByDonations = function (lat, long) {
     return new Promise((res, rej) => {
-        DonationEntity.find({'email': email}, function (err, dons) {
+        var geoquery = {
+            'location': { '$geoWithin': { '$center': [[long, lat], 0.1] } }
+        };
+        DonationEntity.find(geoquery, function (err, locs) {
+            if (err) {
+                rej({
+                    type: false,
+                    data: "Error occured: " + err
+                });
+            } else {
+                res(locs);
+            }
+        });
+    });
+}
+DataService.prototype.getMyDonations = function (email) {
+    return new Promise((res, rej) => {
+        DonationEntity.find({ 'email': email }, function (err, dons) {
             if (err) {
                 rej({
                     type: false,
@@ -141,33 +158,33 @@ DataService.prototype.getMyDonations = function(email) {
             } else {
                 res(dons);
             }
-        }); 
+        });
     })
 }
 
-DataService.prototype.getNerabyDonations = function(long, lat) {
-    return new Promise ((res,rej) => {
+DataService.prototype.getNerabyDonations = function (long, lat) {
+    return new Promise((res, rej) => {
 
     })
 }
 
-DataService.prototype.postNewDonation = function(form) {
+DataService.prototype.postNewDonation = function (form) {
     var DonationEntity = new DonationEntity({
-        itemName : form.itemName,
-        shortDescription : form.shortDescription,
-        itemDetails : form.itemDetails,
-        email : form.email,
-        phone : form.phone,
-        category : form.category,
-        state : form.state,
-        city : form.city,
-        long : form.long,
-        lat : form.lat,
-        imageUrl : "default"
+        itemName: form.itemName,
+        shortDescription: form.shortDescription,
+        itemDetails: form.itemDetails,
+        email: form.email,
+        phone: form.phone,
+        category: form.category,
+        state: form.state,
+        city: form.city,
+        long: form.long,
+        lat: form.lat,
+        imageUrl: "default"
     });
     console.log(DonationEntity);
-    return new Promise ((res,rej) => {//change with save
-        DonationEntity.find({}, function(err, don) {
+    return new Promise((res, rej) => {//change with save
+        DonationEntity.find({}, function (err, don) {
             if (err) {
                 rej({
                     type: false,
