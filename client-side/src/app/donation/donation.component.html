@@ -1,15 +1,15 @@
 <div class="row">
   <!--<a [routerLink]="['/donationdetails', donation._id]">-->
-  <div *ngFor="let donation of myDonations" class="col-sm-3 padding-top10">
+  <div *ngFor="let donation of myDonations" class="col-sm-3 padding-top10 max-widthDonation">
     <div class="card">
       <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
       <div class="avatar">
         <img src="{{donation.imageUrl}}" alt="myImage">
       </div>
       <div class="content">
-        <p>{{donation.itemName}} <br> {{donation.email}}
+        <p>{{donation.itemName}} <br> {{donation.email}}<br><span *ngIf="Type===2">{{donation.dis | number:0}} miles</span>
         </p>
-        <p><button type="button" class="btn btn-default" [routerLink]="['/donationdetails', donation._id]">Contact</button></p>
+        <p><button type="button" class="btn btn-info" [routerLink]="['/detail', donation._id]">View</button></p>
       </div>
     </div>
   </div>

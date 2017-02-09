@@ -5,6 +5,7 @@ var Guid = require('guid');
 var jwt = require("jsonwebtoken");
 var appSettings = require('../app.settings');
 var fs = require("fs");
+var mongoose = require('mongoose');
 
 function DataService() {
 
@@ -138,18 +139,28 @@ DataService.prototype.getNearByDonations = function (long, lat) {
         var geoquery = {
             'location': { '$geoWithin': { '$center': [[long, lat], 10] } }
         };
-        DonationEntity.find(geoquery, function (err, locs) {
+        var query = 'db.runCommand({geoNear:"donations",near:[long,lat]})';
+        DonationEntity.collection.geoNear(long, lat, { distanceMultiplier: 3959 }, function (err, docs) {
+            var distance = 0;
+            var match;
             if (err) {
                 rej({
                     type: false,
                     data: "Error occured: " + err
                 });
             } else {
-                res(locs);
+                let result = docs.results.map(data => {
+                    let doc = data.obj;
+                    doc.dis = data.dis;
+                    return doc;
+                });
+                 console.log(result);
+                res(result);
             }
         });
     });
 }
+
 DataService.prototype.getMyDonations = function (email) {
     return new Promise((res, rej) => {
         DonationEntity.find({ 'email': email }, function (err, dons) {
@@ -164,7 +175,21 @@ DataService.prototype.getMyDonations = function (email) {
         });
     })
 }
-
+DataService.prototype.getDonationByGuid = function (guid) {
+    var id = mongoose.Types.ObjectId(guid);
+    return new Promise((res, rej) => {
+        DonationEntity.findOne({ '_id': id }, function (err, don) {
+            if (err) {
+                rej({
+                    type: false,
+                    data: "Error occured: " + err
+                });
+            } else {
+                res(don);
+            }
+        });
+    })
+}
 DataService.prototype.postNewDonation = function (form) {
     
     var donation = new DonationEntity({

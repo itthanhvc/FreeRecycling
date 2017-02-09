@@ -16,6 +16,9 @@ export class DataService {
         return this.http.get(AppConstant.SERVER_URL + '/api/donations/mydonations?email=' + email, this.jwt()).map((response: Response) => response.json());
     }
 
+    getDonationByGUID(guid: string) {
+        return this.http.get(AppConstant.SERVER_URL + '/api/donations/getdonationbyguid/' + guid, this.jwt()).map((response: Response) => response.json());
+    }
     getNearbyDonations(long, lat) {
         return this.http.post(AppConstant.SERVER_URL + '/api/donations/nearby', { long: long, lat: lat }, this.jwt()).map((response: Response) => response.json());
     }
