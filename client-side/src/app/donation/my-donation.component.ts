@@ -1,26 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {Observable} from 'rxjs/Rx'
+
 import { AuthenticationService } from '../service/authentication.service';
 import { DataService } from '../service/data.service';
+import {AppConstant} from '../app.constant';
 
 @Component({
   selector: 'app-my-donation',
   templateUrl: './my-donation.component.html',
-  styleUrls: ['./my-donation.component.css']
+  styleUrls: ['./my-donation.component.css'],
+
 })
+
 export class MyDonationComponent implements OnInit {
   title: string = "Donation";
+  file:File;
   donationForm: FormGroup;
   myLocation = { long: 1, lat: 1, set: false };
-  /*
-  myDonations = [{ _id: 1, imageUrl: "http://localhost:3000/images/profilephoto.jpg", itemName: "Bicycle", email: "utku@gmail.com" },
-  { _id: 2, imageUrl: "http://localhost:3000/images/profilephoto.jpg", itemName: "Bicycle2", email: "sunil@gmail.com" },
-  { _id: 3, imageUrl: "http://localhost:3000/images/profilephoto.jpg", itemName: "Bicycle3", email: "thanh@gmail.com" },
-  { _id: 1, imageUrl: "http://localhost:3000/images/profilephoto.jpg", itemName: "Bicycle", email: "utku@gmail.com" },
-  { _id: 2, imageUrl: "http://localhost:3000/images/profilephoto.jpg", itemName: "Bicycle2", email: "sunil@gmail.com" },
-  { _id: 3, imageUrl: "http://localhost:3000/images/profilephoto.jpg", itemName: "Bicycle3", email: "thanh@gmail.com" }];
-  */
-  private formData: any;
+  
+  donateEvent : EventEmitter<any>;
+
+  private formData: FormData = new FormData();
   myDonations: any[];
   constructor(fb: FormBuilder, private authenticationService: AuthenticationService, private ds: DataService) {
     this.donationForm = fb.group({
@@ -34,12 +35,15 @@ export class MyDonationComponent implements OnInit {
       "city": ["City", Validators.required],
       "long": [""],
       "lat": [""],
-      "image": [""]
+      "image": [""],
+      "imageBase64":[""]
     });
 
     this.donationForm.valueChanges.subscribe((data: any) => {
       this.formData = data
     });
+
+    this.donateEvent = new EventEmitter();
   }
 
   ngOnInit() {
@@ -47,11 +51,22 @@ export class MyDonationComponent implements OnInit {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
     };
-    this.getMyDonations();
   }
 
-  getMyDonations() {
-    this.ds.getMyDontations(this.authenticationService.UserLogin.email).subscribe(result => this.myDonations = result);
+
+  onChange(event){
+    this.file = event.srcElement.files[0];
+    console.log("Name: "+this.file.name);
+    var reader = new FileReader();
+    let self = this;
+    reader.onload = function(){
+      var dataURL = reader.result;
+      /*var output = document.getElementById('output');
+      output.src = dataURL;*/
+      self.donationForm.controls['imageBase64'].setValue(dataURL);
+      console.log(self.donationForm.controls['imageBase64']);
+    };
+    reader.readAsDataURL(this.file);
   }
 
   setPosition(position) {
@@ -63,8 +78,12 @@ export class MyDonationComponent implements OnInit {
   }
 
   addDonation() {
+    
+    console.log(this.formData);
+
     this.ds.postNewDonation(this.formData).subscribe(data => {
-      console.log("Added!" + this.donationForm.value);
+      console.log("Added!");
+      this.donateEvent.emit();
     },
       error => {
         console.log("Error");

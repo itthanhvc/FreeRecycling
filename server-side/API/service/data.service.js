@@ -166,8 +166,7 @@ DataService.prototype.getMyDonations = function (email) {
 }
 
 DataService.prototype.postNewDonation = function (form) {
-    const imageId = Guid.create();
-    const newImageName = imageId.value + '.jpg';//extension is gonna change
+    
     var donation = new DonationEntity({
         itemName: form.itemName,
         shortDescription: form.shortDescription,
@@ -180,16 +179,11 @@ DataService.prototype.postNewDonation = function (form) {
         location: [parseFloat(form.long), parseFloat(form.lat)],
         long: form.long,
         lat: form.lat,
-        imageUrl: "http://localhost:3000/images/profilephoto.jpg" //+ newImageName
+        imageUrl: form.imageBase64//__dirname + '/../public/images/' + newImageName
     });
 
-    /*fs.writeFile(__dirname + '/../public/images/' + newImageName, form.image, 'binary', function (err) {
-        if (err) throw err;
-        console.log('Done');
-    })*/
-    console.log('UTKU'+form.long);
     return new Promise((res, rej) => {
-        donation.save(function (err, don) {
+        donation.save(function (err, don) {//changewith save
             don.save(function (err, don1) {
                 res({
                     type: true,

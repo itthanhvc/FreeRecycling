@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { AuthenticationService } from '../service/authentication.service';
 import { DataService } from '../service/data.service';
 enum typeEnum {
@@ -10,7 +10,7 @@ enum typeEnum {
   selector: 'app-donation',
   templateUrl: './donation.component.html',
   styleUrls: ['./my-donation.component.css'],
-  inputs: ['Location', 'Geography', 'Type']
+  inputs: ['Location', 'Geography', 'Type', 'Donation']
 })
 
 export class DonationComponent implements OnInit {
@@ -28,6 +28,14 @@ export class DonationComponent implements OnInit {
     return this._location;
   }
 
+  private _donateEvent : EventEmitter<any>;
+  set Donation(value){
+
+    this._donateEvent=value;
+   this. _donateEvent.subscribe(() => this.getMyDonations());
+  }
+
+  
   // Me
   private _type: typeEnum
   set Type(value) {
@@ -37,6 +45,8 @@ export class DonationComponent implements OnInit {
   get Type(): any {
     return this._type;
   }
+
+  
   //////////////////////////////////////////
   ngOnInit() {
     //console.log(this.authenticationService.UserLogin.);
