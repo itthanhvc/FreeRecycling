@@ -1,6 +1,12 @@
 .padding-top10{
     padding-top: 10px;
 }
+.padding-right0{
+  padding-right: 0px;
+}
+.padding-left0{
+    padding-left: 0px;
+}
 .max-widthDonation{
    max-width: 230px;
   }

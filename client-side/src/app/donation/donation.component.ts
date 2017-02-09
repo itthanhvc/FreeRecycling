@@ -15,6 +15,7 @@ enum typeEnum {
 
 export class DonationComponent implements OnInit {
   myDonations: any[];
+
   constructor(private authenticationService: AuthenticationService, private ds: DataService) {
 
   }
@@ -28,14 +29,13 @@ export class DonationComponent implements OnInit {
     return this._location;
   }
 
-  private _donateEvent : EventEmitter<any>;
-  set Donation(value){
+  private _donateEvent: EventEmitter<any>;
+  set Donation(value) {
 
-    this._donateEvent=value;
-   this. _donateEvent.subscribe(() => this.getMyDonations());
+    this._donateEvent = value;
+    this._donateEvent.subscribe(() => this.getMyDonations());
   }
 
-  
   // Me
   private _type: typeEnum
   set Type(value) {
@@ -46,16 +46,19 @@ export class DonationComponent implements OnInit {
     return this._type;
   }
 
-  
+
   //////////////////////////////////////////
   ngOnInit() {
     //console.log(this.authenticationService.UserLogin.);
 
   }
+  enable(email: string): boolean {
+    return email.toLowerCase() === this.authenticationService.UserLogin.email.toLowerCase();
+  }
   getMyDonations() {
     this.ds.getMyDontations(this.authenticationService.UserLogin.email).subscribe(result => this.myDonations = result);
   }
-  markAsDonated(id){
+  markAsDonated(id) {
     //subscribe donations
     this.ds.markAsDonated(id).subscribe(() => this.getMyDonations());
   }

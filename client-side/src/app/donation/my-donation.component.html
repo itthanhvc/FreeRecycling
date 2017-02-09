@@ -13,7 +13,7 @@
           <div class="form-group">
             <label for="itemName">Item Name:</label>
             <input class="form-control" type="text" id="itemName" [formControl]="donationForm.controls['itemName']" />
-            <p *ngIf="!donationForm.controls['itemName'].valid">Item name is required</p><br>
+            <p class="text-danger" *ngIf="!donationForm.controls['itemName'].valid">Item name is required</p><br>
           </div>
           <div class="form-group">
             <label>Category:</label>
@@ -38,7 +38,7 @@
           <div class="form-group">
             <label>Email:</label>
             <input placeholder="Email" class="form-control" type="text" name="email" [formControl]="donationForm.controls['email']" />
-            <p *ngIf="!donationForm.controls['email'].valid">Email is required</p><br>
+            <p class="text-danger" *ngIf="!donationForm.controls['email'].valid">Email is required</p><br>
           </div>
 
           <div class="form-group">

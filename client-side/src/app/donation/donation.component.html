@@ -9,10 +9,10 @@
       <div class="content">
         <p>{{donation.itemName}} <br> {{donation.email}}<br><span *ngIf="Type===2">{{donation.dis | number:0}} miles</span>
         </p>
-          <p><button type="button" class="btn btn-info" [routerLink]="['/detail', donation._id]">View</button>
-          </p>
-          <p><button type = "button" class = "btn btn-info" (click) = "markAsDonated(donation._id)">Mark as donated!</button>
-          </p>
+        <div class="btn btn-group">
+          <button type="button" class="btn btn-info" [routerLink]="['/detail', donation._id]">View</button>
+          <button type="button" class="btn btn-default" *ngIf="enable(donation.email)" (click)="markAsDonated(donation._id)">Remove</button>
+        </div>
       </div>
     </div>
   </div>
