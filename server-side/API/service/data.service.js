@@ -156,8 +156,7 @@ DataService.prototype.getNearByDonations = function (long, lat) {
                     let doc = data.obj;
                     doc.dis = data.dis;
                     return doc;
-                });
-                console.log(result);
+                });       
                 res(result);
             }
         });
