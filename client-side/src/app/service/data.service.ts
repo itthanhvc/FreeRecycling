@@ -22,7 +22,9 @@ export class DataService {
     getNearbyDonations(long, lat) {
         return this.http.post(AppConstant.SERVER_URL + '/api/donations/nearby', { long: long, lat: lat }, this.jwt()).map((response: Response) => response.json());
     }
-
+    markAsDonated(id){
+        return this.http.post(AppConstant.SERVER_URL + '/api/donations/markasdonated', {id: id}, this.jwt()).map((response: Response) => response.json())
+    }
     postNewDonation(form) {
         return this.http.post(AppConstant.SERVER_URL + '/api/donations/newdonation', { form: form }, this.jwt()).map((response: Response) => response.json());
     }

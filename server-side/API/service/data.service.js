@@ -163,7 +163,7 @@ DataService.prototype.getNearByDonations = function (long, lat) {
 
 DataService.prototype.getMyDonations = function (email) {
     return new Promise((res, rej) => {
-        DonationEntity.find({ 'email': email }, function (err, dons) {
+        DonationEntity.find({ 'email': email, 'donationMark' : 0 }, function (err, dons) {
             if (err) {
                 rej({
                     type: false,
@@ -204,6 +204,7 @@ DataService.prototype.postNewDonation = function (form) {
         location: [parseFloat(form.long), parseFloat(form.lat)],
         long: form.long,
         lat: form.lat,
+        donationMark : 0,//not donated yet
         imageUrl: form.imageBase64//__dirname + '/../public/images/' + newImageName
     });
 
@@ -217,5 +218,20 @@ DataService.prototype.postNewDonation = function (form) {
             });
         })
     });
+}
+
+DataService.prototype.markAsDonated = function (id) {
+    return new Promise((res, rej) => {
+        DonationEntity.update({ '_id': id }, {$set: {donationMark : 1} }, function (err, dons) {
+            if (err) {
+                rej({
+                    type: false,
+                    data: "Error occured: " + err
+                });
+            } else {
+                res(dons);
+            }
+        });
+    })
 }
 module.exports = new DataService();

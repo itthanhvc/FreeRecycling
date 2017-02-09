@@ -11,7 +11,8 @@ var DonationSchema = new mongoose.Schema({
     location: [Number],
     long : String,
     lat : String,
-    imageUrl : String
+    imageUrl : String,
+    donationMark : Number
 });
 var Donation = mongoose.model('donations', DonationSchema);
 module.exports = Donation;

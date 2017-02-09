@@ -26,5 +26,11 @@ router.post('/images', function(req,res){
     console.log("image server router");
 })
 
+router.post('/markasdonated', function(req,res){
+    dataService.markAsDonated(req.body.id)
+        .then(response => res.json(response))
+        .catch(error => res.json(error));
+})
+
 module.exports = router;
 
