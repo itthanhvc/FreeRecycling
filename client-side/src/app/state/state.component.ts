@@ -23,41 +23,31 @@ export class StateComponent implements OnInit {
   };
   filter: string;
   constructor(private route: ActivatedRoute, private dataservice: DataService) {
-    dataservice.getStates().subscribe(res => {
-      this.states = res.json();
-    });
+    this.loadStates();
     this.braidCumb = { 'state': '', 'city': '', 'item': '' };
     this.isstate = true;
     this.iscity = false;
     this.isitem = false;
-    let x=19;
-    if(x!==10){
-      console.log("x is not 10");
-    }
-    
-    //  console.log(localStorage.getItem("city"));
-     
-    // if(localStorage.getItem("city")!=null && localStorage.getItem("city")!="null"){
-    //   console.log("city"+localStorage.getItem("city")+" state "+localStorage.getItem("state"));
-    //   this.braidCumb["state"]=localStorage.getItem("state");
+    // if (localStorage.getItem("city") != null && localStorage.getItem("city") != "null") {
+    //   console.log("city" + localStorage.getItem("city") + " state " + localStorage.getItem("state"));
+    //   this.braidCumb["state"] = localStorage.getItem("state");
+    //   this.loadCities(localStorage.getItem("city"));
     //   this.onCityClick(localStorage.getItem("city"));
     // }
-    // if(localStorage.getItem("city")!=null && localStorage.getItem("state")!=null && localStorage.getItem("state")!="null" && localStorage.getItem("city")=="null"){
-    //    console.log("state"+localStorage.getItem("state"));
+    // if (localStorage.getItem("city") != null && localStorage.getItem("state") != null && localStorage.getItem("state") != "null" && localStorage.getItem("city") == "null") {
+    //   console.log("state" + localStorage.getItem("state"));
     //   this.onStateClick(localStorage.getItem("state"));
     // }
   }
   onStateClick(value: string) {
     this.location.state = value;
     this.braidCumb['state'] = value;
-    this.dataservice.getCitiesByState(this.braidCumb['state']).subscribe(res => {
-      this.cities = res.json();
-    });
+    this.loadCities(value);
     this.isstate = false;
     this.iscity = true;
     this.isitem = false;
-    localStorage.setItem("state",value);
-    this.filter="";
+    localStorage.setItem("state", value);
+    this.filter = "";
   }
   onCityClick(value: string) {
     this.location.city = value;
@@ -65,11 +55,12 @@ export class StateComponent implements OnInit {
     this.isstate = false;
     this.iscity = false;
     this.isitem = true;
-    localStorage.setItem("city",value);
-    this.filter="";
+    localStorage.setItem("city", value);
+    this.filter = "";
+    console.log(this.cities);
   }
   onItemClick(value: string) {
-    this.braidCumb['item'] = value;  
+    this.braidCumb['item'] = value;
   }
   onStateBraidCumb() {
     this.braidCumb['item'] = '';
@@ -98,5 +89,14 @@ export class StateComponent implements OnInit {
   }
   ngOnInit() {
   }
-
+  loadStates() {
+    this.dataservice.getStates().subscribe(res => {
+      this.states = res.json();
+    });
+  }
+  loadCities(value:string) {
+    this.dataservice.getCitiesByState(value).subscribe(res => {
+      this.cities = res.json();
+    });
+  }
 }
