@@ -19,6 +19,7 @@ import { DataService } from './service/data.service';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guard/auth.guard';
 import { filterArray } from './filter-array.pipe';
+import { displayFullState } from './displayFullState.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { filterArray } from './filter-array.pipe';
     CollapseDirective,
     RegisterComponent,
     filterArray,
+    displayFullState,
     DonationComponent
   ],
   imports: [

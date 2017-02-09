@@ -13,10 +13,18 @@
         <label>Category: </label>
         <span>{{donation.category}}</span>
       </div>
-      <div class="form-group"><label>City: </label><span>{{donation.city}}</span></div>
-      <div class="form-group"><label>State: </label><span>{{donation.state}}</span></div>
-      <div class="form-group"><label>Email: </label><span>{{donation.email}}</span></div>
-      <div class="form-group"><label>Phone: </label><span>{{donation.phone}}</span></div>
+      <div class="form-group">
+        <label>City: </label>
+        <span>{{donation.city}}</span></div>
+      <div class="form-group">
+        <label>State: </label>
+        <span>{{ donation.state|displayFullState }}</span></div>
+      <div class="form-group">
+        <label>Email: </label>
+        <span>{{donation.email}}</span></div>
+      <div class="form-group">
+        <label>Phone: </label>
+        <span>{{donation.phone}}</span></div>
     </form>
   </div>
 </div>
