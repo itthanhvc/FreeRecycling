@@ -30,6 +30,22 @@ export class StateComponent implements OnInit {
     this.isstate = true;
     this.iscity = false;
     this.isitem = false;
+    let x=19;
+    if(x!==10){
+      console.log("x is not 10");
+    }
+    
+    //  console.log(localStorage.getItem("city"));
+     
+    // if(localStorage.getItem("city")!=null && localStorage.getItem("city")!="null"){
+    //   console.log("city"+localStorage.getItem("city")+" state "+localStorage.getItem("state"));
+    //   this.braidCumb["state"]=localStorage.getItem("state");
+    //   this.onCityClick(localStorage.getItem("city"));
+    // }
+    // if(localStorage.getItem("city")!=null && localStorage.getItem("state")!=null && localStorage.getItem("state")!="null" && localStorage.getItem("city")=="null"){
+    //    console.log("state"+localStorage.getItem("state"));
+    //   this.onStateClick(localStorage.getItem("state"));
+    // }
   }
   onStateClick(value: string) {
     this.location.state = value;
@@ -40,6 +56,7 @@ export class StateComponent implements OnInit {
     this.isstate = false;
     this.iscity = true;
     this.isitem = false;
+    localStorage.setItem("state",value);
   }
   onCityClick(value: string) {
     this.location.city = value;
@@ -47,6 +64,7 @@ export class StateComponent implements OnInit {
     this.isstate = false;
     this.iscity = false;
     this.isitem = true;
+    localStorage.setItem("city",value);
   }
   onItemClick(value: string) {
     this.braidCumb['item'] = value;  
@@ -73,6 +91,8 @@ export class StateComponent implements OnInit {
     this.braidCumb['item'] = '';
     this.braidCumb['city'] = '';
     this.braidCumb['state'] = '';
+    localStorage.removeItem("state");
+    localStorage.removeItem("city");
   }
   ngOnInit() {
   }
