@@ -20,6 +20,8 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guard/auth.guard';
 import { filterArray } from './filter-array.pipe';
 import { displayFullState } from './displayFullState.pipe';
+import { truncate } from './truncate.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +34,7 @@ import { displayFullState } from './displayFullState.pipe';
     CollapseDirective,
     RegisterComponent,
     filterArray,
+    truncate,
     displayFullState,
     DonationComponent
   ],

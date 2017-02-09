@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { AuthenticationService } from '../service/authentication.service';
 import { DataService } from '../service/data.service';
+import { truncate } from '../truncate.pipe';
 enum typeEnum {
   Location = 1,
   Geography = 2,
