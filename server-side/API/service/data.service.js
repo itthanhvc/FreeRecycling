@@ -122,7 +122,7 @@ DataService.prototype.getDonationsByCityAndState = function (city, state) {
     return new Promise((res, rej) => {
         var regexcity = new RegExp(["^", city, "$"].join(""), "i");
         var regexstate = new RegExp(["^", state, "$"].join(""), "i");
-        DonationEntity.find({ $and: [{ 'city': regexcity }, { 'state': regexstate }, {'donationMark':0}] }, function (err, locs) {
+        DonationEntity.find({ $and: [{ 'city': regexcity }, { 'state': regexstate }, { 'donationMark': 0 }] }, function (err, locs) {
             if (err) {
                 rej({
                     type: false,
@@ -140,7 +140,10 @@ DataService.prototype.getNearByDonations = function (long, lat) {
             'location': { '$geoWithin': { '$center': [[long, lat], 10] } }
         };
         var query = 'db.runCommand({geoNear:"donations",near:[long,lat]})';
-        DonationEntity.collection.geoNear(long, lat, { distanceMultiplier: 3959 }, function (err, docs) {
+        DonationEntity.collection.geoNear(long, lat, {
+            spherical: true,
+            distanceMultiplier: 3959, query: { 'donationMark': 0 }
+        }, function (err, docs) {
             var distance = 0;
             var match;
             if (err) {
@@ -154,7 +157,7 @@ DataService.prototype.getNearByDonations = function (long, lat) {
                     doc.dis = data.dis;
                     return doc;
                 });
-                 console.log(result);
+                console.log(result);
                 res(result);
             }
         });
@@ -163,7 +166,7 @@ DataService.prototype.getNearByDonations = function (long, lat) {
 
 DataService.prototype.getMyDonations = function (email) {
     return new Promise((res, rej) => {
-        DonationEntity.find({ 'email': email, 'donationMark' : 0 }, function (err, dons) {
+        DonationEntity.find({ 'email': email, 'donationMark': 0 }, function (err, dons) {
             if (err) {
                 rej({
                     type: false,
@@ -191,7 +194,7 @@ DataService.prototype.getDonationByGuid = function (guid) {
     })
 }
 DataService.prototype.postNewDonation = function (form) {
-    
+
     var donation = new DonationEntity({
         itemName: form.itemName,
         shortDescription: form.shortDescription,
@@ -204,7 +207,7 @@ DataService.prototype.postNewDonation = function (form) {
         location: [parseFloat(form.long), parseFloat(form.lat)],
         long: form.long,
         lat: form.lat,
-        donationMark : 0,//not donated yet
+        donationMark: 0,//not donated yet
         imageUrl: form.imageBase64//__dirname + '/../public/images/' + newImageName
     });
 
@@ -222,7 +225,7 @@ DataService.prototype.postNewDonation = function (form) {
 
 DataService.prototype.markAsDonated = function (id) {
     return new Promise((res, rej) => {
-        DonationEntity.update({ '_id': id }, {$set: {donationMark : 1} }, function (err, dons) {
+        DonationEntity.update({ '_id': id }, { $set: { donationMark: 1 } }, function (err, dons) {
             if (err) {
                 rej({
                     type: false,

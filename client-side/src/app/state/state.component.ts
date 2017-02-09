@@ -57,6 +57,7 @@ export class StateComponent implements OnInit {
     this.iscity = true;
     this.isitem = false;
     localStorage.setItem("state",value);
+    this.filter="";
   }
   onCityClick(value: string) {
     this.location.city = value;
@@ -65,6 +66,7 @@ export class StateComponent implements OnInit {
     this.iscity = false;
     this.isitem = true;
     localStorage.setItem("city",value);
+    this.filter="";
   }
   onItemClick(value: string) {
     this.braidCumb['item'] = value;  

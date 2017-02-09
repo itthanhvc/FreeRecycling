@@ -61,7 +61,7 @@ export class DonationComponent implements OnInit {
   }
   markAsDonated(id) {
     //subscribe donations
-    this.ds.markAsDonated(id).subscribe(() => this.getMyDonations());
+    this.ds.markAsDonated(id).subscribe(() => this.loading());
   }
   getDonationsByLocation() {
     this.ds.getDonationsByCityAndState(this.Location.city, this.Location.state)
