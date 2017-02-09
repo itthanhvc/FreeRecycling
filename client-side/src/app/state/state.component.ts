@@ -28,16 +28,20 @@ export class StateComponent implements OnInit {
     this.isstate = true;
     this.iscity = false;
     this.isitem = false;
-    // if (localStorage.getItem("city") != null && localStorage.getItem("city") != "null") {
-    //   console.log("city" + localStorage.getItem("city") + " state " + localStorage.getItem("state"));
-    //   this.braidCumb["state"] = localStorage.getItem("state");
-    //   this.loadCities(localStorage.getItem("city"));
-    //   this.onCityClick(localStorage.getItem("city"));
-    // }
-    // if (localStorage.getItem("city") != null && localStorage.getItem("state") != null && localStorage.getItem("state") != "null" && localStorage.getItem("city") == "null") {
-    //   console.log("state" + localStorage.getItem("state"));
-    //   this.onStateClick(localStorage.getItem("state"));
-    // }
+    if (localStorage.getItem("city") != null && localStorage.getItem("city") != "null") {
+      console.log("city" + localStorage.getItem("city") + " state " + localStorage.getItem("state"));
+      this.braidCumb["state"] = localStorage.getItem("state");
+      this.location.state=localStorage.getItem("state");
+      this.location.city=localStorage.getItem("city");
+      this.loadCities(localStorage.getItem("city"));
+      this.onCityClick(localStorage.getItem("city"));      
+    }
+    if (localStorage.getItem("city")==null && localStorage.getItem("state") != null && localStorage.getItem("state") != "null") {
+      console.log("state" + localStorage.getItem("state"));
+      this.loadStates();
+      this.location.state=localStorage.getItem("state");
+      this.onStateClick(localStorage.getItem("state"));
+    }
   }
   onStateClick(value: string) {
     this.location.state = value;
@@ -63,6 +67,8 @@ export class StateComponent implements OnInit {
     this.braidCumb['item'] = value;
   }
   onStateBraidCumb() {
+    this.loadCities(this.braidCumb['state']);
+    localStorage.removeItem("city");
     this.braidCumb['item'] = '';
     this.braidCumb['city'] = '';
     this.isstate = false;
